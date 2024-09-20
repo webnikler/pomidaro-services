@@ -1,0 +1,90 @@
+$LightBlue: (
+  headerFill: #07479E,
+  headerStroke: #0A55BA,
+  sidebarFill: #0C58B8,
+  sidebarStroke: #1F68CE,
+  sidebarHeaderFill: #0A55BA,
+  sidebarHeaderStroke: #1061BF,
+  contentFill: linear-gradient(298.52deg, #35AFBF 0.32%, #2390D3 42.73%, #1372E0 84.43%),
+);
+
+$DarkBlue: (
+  headerFill: #07479E,
+  headerStroke: #0A53B9,
+  sidebarFill: #0A52B6,
+  sidebarStroke: #1F68CE,
+  sidebarHeaderFill: #0A53B9,
+  sidebarHeaderStroke: #105CC5,
+  contentFill: linear-gradient(297.08deg, #09336F 0.71%, #0B48A1 50.2%, #0C5FD5 98.85%),
+);
+
+$Green: (
+  headerFill: #145439,
+  headerStroke: #186C4B,
+  sidebarFill: #1A6E4D,
+  sidebarStroke: #137654,
+  sidebarHeaderFill: #186C4B,
+  sidebarHeaderStroke: #1B7B5A,
+  contentFill: linear-gradient(296.56deg, #5CC2CE 1.86%, #46AAA0 50.3%, #238E6B 97.92%),
+);
+
+$Orange: (
+  headerFill: #871F12,
+  headerStroke: #A42B1A,
+  sidebarFill: #A62D1A,
+  sidebarStroke: #B93E2D,
+  sidebarHeaderFill: #A42B1A,
+  sidebarHeaderStroke: #B82F1C,
+  contentFill:  linear-gradient(297.37deg, #F79F3D 0.74%, #F17B3B 42.66%, #EA5332 83.87%),
+);
+
+$Pink: (
+  headerFill: #841559,
+  headerStroke: #9F226E,
+  sidebarFill: #9F236C,
+  sidebarStroke: #A12D74,
+  sidebarHeaderFill: #9F226E,
+  sidebarHeaderStroke: #B7187A,
+  contentFill: linear-gradient(297.3deg, #F67466 0.22%, #F17389 50.19%, #E874B1 99.33%),
+);
+
+$LightPurple: (
+  headerFill: #463699,
+  headerStroke: #533FAE,
+  sidebarFill: #5741AE,
+  sidebarStroke: #5C4DA8,
+  sidebarHeaderFill: #533FAE,
+  sidebarHeaderStroke: #4F3EA3,
+  contentFill: linear-gradient(297.01deg, #DE73B9 0.86%, #AF69C1 50.47%, #8061C9 99.24%),
+);
+
+$DarkPurple: (
+  headerFill: #072855,
+  headerStroke: #10336D,
+  sidebarFill: #10336D,
+  sidebarStroke: #114088,
+  sidebarHeaderFill: #10336D,
+  sidebarHeaderStroke: #183F7A,
+  contentFill: linear-gradient(296.99deg, #C04D95 0.91%, #754388 50.43%, #253573 99.12%),
+);
+
+$Grey: (
+  headerFill: #47536B,
+  headerStroke: #5D6981,
+  sidebarFill: #4E5E78,
+  sidebarStroke: #63738A,
+  sidebarHeaderFill: #4F5F79,
+  sidebarHeaderStroke: #60708A,
+  contentFill: linear-gradient(296.89deg, #192C4D 0.89%, #344563 50.32%, #485872 98.92%),
+);
+
+$colors: (
+  LightBlue: $LightBlue,
+  DarkBlue: $DarkBlue,
+  Green: $Green,
+  Orange: $Orange,
+  Pink: $Pink,
+  LightPurple: $LightPurple,
+  DarkPurple: $DarkPurple,
+  Grey: $Grey,
+);

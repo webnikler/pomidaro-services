@@ -1,11 +1,57 @@
-import styles from './Layout.module.scss';
+import css from './Layout.module.scss';
+import cn from 'classnames';
+import PropTypes from 'prop-types';
+import { LayoutComponent, LayoutPalette } from './Layout.types';
 
-export function Layout() {
-  return (
-    <div className={styles['container']}>
-      <h1>Welcome to Layout!</h1>
-    </div>
-  );
-}
+export const Layout: LayoutComponent = ({
+  children,
+  header,
+  sidebar,
+  sidebarHeader,
+  contentHeader,
+  palette = LayoutPalette.LightBlue,
+}) => (
+  <main className={cn(css.Layout, css[LayoutPalette[palette]])}>
+    {header}
+    <section className={css.body}>
+      <aside className={css.aside}>
+        {sidebarHeader}
+        {sidebar}
+      </aside>
+      <Layout.Content header={contentHeader}>
+        {children}
+      </Layout.Content>
+    </section>
+  </main>
+);
+
+Layout.propTypes = {
+  palette: PropTypes.oneOf(Object.values(LayoutPalette)).isRequired,
+  header: PropTypes.element,
+  sidebar: PropTypes.element,
+  sidebarHeader: PropTypes.element,
+  contentHeader: PropTypes.element,
+};
+
+Layout.Header = ({ children }) => (
+  <header className={css.Header}>{children}</header>
+);
+
+Layout.Content = ({ children, header }) => (
+  <main className={css.Content}>{header}{children}</main>
+);
+
+Layout.ContentHeader = ({ children }) => (
+  <header className={css.ContentHeader}>{children}</header>
+);
+
+Layout.Sidebar = ({ children }) => (
+  <section className={css.Sidebar}>{children}</section>
+);
+
+Layout.SidebarHeader = ({ children }) => (
+  <header className={css.SidebarHeader}>{children}</header>
+);
 
 export default Layout;
+export { LayoutPalette };

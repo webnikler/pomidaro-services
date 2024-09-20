@@ -5,3 +5,88 @@
  * .container {
  * }
 */
+
+@use 'sass:map';
+@use 'Layout.palette' as palette;
+
+@mixin initBorder {
+  border-width: 1px;
+  border-style: solid;
+  box-sizing: border-box;
+}
+
+$headerHeight: 54px;
+$subheaderHeight: 62px;
+$sidebarWidth: 320px;
+
+.Layout {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  @each $color, $props in palette.$colors {
+    &.#{'' + $color} {
+      .Header {
+        background-color: map-get($props, headerFill);
+        border-color: map-get($props, headerStroke);
+      }
+      .Sidebar {
+        background-color: map-get($props, sidebarFill);
+        border-color: map-get($props, sidebarStroke);
+
+        &Header {
+          background-color: map-get($props, sidebarHeaderFill);
+          border-color: map-get($props, sidebarHeaderStroke);
+        }
+      }
+      .Content {
+        background: map-get($props, contentFill);
+      }
+    }
+  }
+}
+
+.Header {
+  height: $headerHeight;
+  @include initBorder;
+}
+
+.Sidebar {
+  width: $sidebarWidth;
+  height: 100%;
+  @include initBorder;
+
+  &Header {
+    width: 100%;
+    height: $subheaderHeight;
+    flex-shrink: 0;
+    @include initBorder;
+  }
+}
+
+.Content {
+  height: 100%;
+  width: 100%;
+
+  &Header {
+    width: 100%;
+    height: $subheaderHeight;
+    background: rgba(#1D1D1D, .15);
+  }
+}
+
+.body {
+  height: 100%;
+  display: flex;
+}
+
+.aside {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  .SidebarHeader:only-child {
+    display: none;
+  }
+}
