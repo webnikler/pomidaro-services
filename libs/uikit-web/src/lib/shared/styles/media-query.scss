@@ -1,0 +1,50 @@
+@use 'sass:list';
+
+$mediaQueries: (
+  xs: '(max-width: 599px)',
+  sm: '(min-width: 600px) and (max-width: 904px)',
+  md: '(min-width: 905px) and (max-width: 1239px)',
+  lg: '(min-width: 1240) and (max-width: 1439px)',
+  xl: '(min-width: 1440px)',
+);
+
+$argsError: 'Допустимые значения аргументов: xs, sm, md, lg, xl';
+
+@function _validateToken($token) {
+  @each $mediaQueryToken, $_ in $mediaQueries {
+    @if ($token == $mediaQueryToken) {
+      @return $token;
+    }
+  }
+
+  @error #{$argsError};
+}
+
+@function _getQuery($token) {
+  @return map-get($mediaQueries, _validateToken($token));
+}
+
+@mixin use($tokens...) {
+  $query: '';
+  $argsLength: length($tokens);
+
+  @if ($argsLength == 0) {
+    @error #{$argsError};
+  }
+
+  @if ($argsLength == 1) {
+    $query: _getQuery(list.nth($tokens, 1));
+  } @else {
+    @each $token in $tokens {
+      @if ($query != '') {
+        $query: $query + ',' + _getQuery($token);
+      } @else {
+        $query: $query + _getQuery($token);
+      }
+    }
+  }
+
+  @media #{$query} {
+    @content;
+  }
+}

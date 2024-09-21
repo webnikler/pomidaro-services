@@ -1,22 +1,39 @@
-$defaultGap: 14px;
+@use '../../shared/styles/media-query.scss' as mediaQuery;
+
+$defaultGap: 16px;
 $totalCols: 12;
+
+@mixin configureGridTemplate {
+  grid-template-columns: repeat(12, 1fr);
+
+  @include mediaQuery.use(xs) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  @include mediaQuery.use(sm) {
+    grid-template-columns: repeat(8, 1fr);
+  }
+}
+
+@mixin configureGridGaps {
+  row-gap: var(--gridRowGap);
+  column-gap: var(--gridColumnGap);
+  margin-left: var(--gridColumnGap);
+  margin-right: var(--gridColumnGap);
+}
 
 .Grid {
   --gridRowGap: #{$defaultGap};
   --gridColumnGap: #{$defaultGap};
 
   display: grid;
-  grid-template-columns: repeat(12, 1fr);
 
-  row-gap: var(--gridRowGap);
-  column-gap: var(--gridColumnGap);
-  margin-left: var(--gridColumnGap);
-  margin-right: var(--gridColumnGap);
+  @include configureGridGaps;
+  @include configureGridTemplate;
 
   &Item {
     grid-area: auto;
 
-    @for $i from 1 through #{$totalCols} {
+    @for $i from 1 through $totalCols {
       &.col-#{$i} {
         grid-area: auto / span $i;
       }
