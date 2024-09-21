@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "build:storybook": "npx nx run uikit-web:build-storybook"
+    "build:storybook": "npx nx run uikit-web:build-storybook",
+    "serve:storybook": "npx nx run uikit-web:storybook"
   },
   "private": true,
   "dependencies": {
