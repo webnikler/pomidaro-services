@@ -9,6 +9,7 @@ export const Layout: LayoutComponent = ({
   sidebar,
   sidebarHeader,
   contentHeader,
+  responsive = false,
   palette = LayoutPalette.LightBlue,
 }) => (
   <main className={cn(css.Layout, css[LayoutPalette[palette]])}>
@@ -18,7 +19,7 @@ export const Layout: LayoutComponent = ({
         {sidebarHeader}
         {sidebar}
       </aside>
-      <Layout.Content header={contentHeader}>
+      <Layout.Content header={contentHeader} responsive={responsive}>
         {children}
       </Layout.Content>
     </section>
@@ -31,14 +32,18 @@ Layout.propTypes = {
   sidebar: PropTypes.element,
   sidebarHeader: PropTypes.element,
   contentHeader: PropTypes.element,
+  responsive: PropTypes.bool,
 };
 
 Layout.Header = ({ children }) => (
   <header className={css.Header}>{children}</header>
 );
 
-Layout.Content = ({ children, header }) => (
-  <main className={css.Content}>{header}{children}</main>
+Layout.Content = ({ children, header, responsive }) => (
+  <main className={css.Content}>
+    {header}
+    <div className={cn(css.contentWrapper, { [css.responsive]: responsive })}>{children}</div>
+  </main>
 );
 
 Layout.ContentHeader = ({ children }) => (

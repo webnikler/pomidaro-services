@@ -1,11 +1,3 @@
-/*
- * Replace this with your own classes
- *
- * e.g.
- * .container {
- * }
-*/
-
 @use 'sass:map';
 @use 'Layout.palette' as palette;
 
@@ -18,6 +10,9 @@
 $headerHeight: 54px;
 $subheaderHeight: 62px;
 $sidebarWidth: 320px;
+
+$tabletMaxWidth: 840px;
+$laptopMaxWidth: 1040px;
 
 .Layout {
   width: 100vw;
@@ -68,10 +63,13 @@ $sidebarWidth: 320px;
 .Content {
   height: 100%;
   width: 100%;
+  display: flex;
+  flex-direction: column;
 
   &Header {
     width: 100%;
     height: $subheaderHeight;
+    flex-shrink: 0;
     background: rgba(#1D1D1D, .15);
   }
 }
@@ -88,5 +86,16 @@ $sidebarWidth: 320px;
 
   .SidebarHeader:only-child {
     display: none;
+  }
+}
+
+.contentWrapper {
+  width: 100%;
+  height: 100%;
+  max-width: $laptopMaxWidth;
+  margin: 0 auto;
+
+  &.responsive {
+    max-width: 100%;
   }
 }

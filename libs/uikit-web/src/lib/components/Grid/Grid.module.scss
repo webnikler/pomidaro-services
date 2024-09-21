@@ -1,0 +1,24 @@
+$defaultGap: 14px;
+
+.Grid {
+  --gridRowGap: #{$defaultGap};
+  --gridColumnGap: #{$defaultGap};
+
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+
+  row-gap: var(--gridRowGap);
+  column-gap: var(--gridColumnGap);
+  margin-left: var(--gridColumnGap);
+  margin-right: var(--gridColumnGap);
+
+  &Item {
+    grid-area: auto;
+
+    @for $i from 1 through 12 {
+      &.col-#{$i} {
+        grid-area: auto / span $i;
+      }
+    }
+  }
+}
