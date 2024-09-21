@@ -1,0 +1,11 @@
+export { default as IconDone } from '../../../assets/icons/Done.svg?react';
+export { default as IconMoreVert } from '../../../assets/icons/MoreVert.svg?react';
+export { default as IconMoreHoriz } from '../../../assets/icons/MoreHoriz.svg?react';
+export { default as IconTour } from '../../../assets/icons/Tour.svg?react';
+export { default as IconAdd } from '../../../assets/icons/Add.svg?react';
+export { default as IconPause } from '../../../assets/icons/Pause.svg?react';
+export { default as IconPauseCircle } from '../../../assets/icons/PauseCircle.svg?react';
+export { default as IconPlayArrow } from '../../../assets/icons/PlayArrow.svg?react';
+export { default as IconPlayCircle } from '../../../assets/icons/PlayCircle.svg?react';
+export { default as IconStop } from '../../../assets/icons/Stop.svg?react';
+export { default as IconStopCircle } from '../../../assets/icons/StopCircle.svg?react';

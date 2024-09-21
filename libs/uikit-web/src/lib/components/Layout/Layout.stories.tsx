@@ -40,6 +40,7 @@ export default meta;
 type Story = StoryObj<LayoutWithCustomArgs>;
 
 export const Base: Story = {
+  name: 'Layout',
   argTypes: {
     palette: {
       options: Object.values(LayoutPalette),
