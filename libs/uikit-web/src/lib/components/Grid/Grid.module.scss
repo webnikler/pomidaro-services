@@ -1,4 +1,5 @@
 $defaultGap: 14px;
+$totalCols: 12;
 
 .Grid {
   --gridRowGap: #{$defaultGap};
@@ -15,7 +16,7 @@ $defaultGap: 14px;
   &Item {
     grid-area: auto;
 
-    @for $i from 1 through 12 {
+    @for $i from 1 through #{$totalCols} {
       &.col-#{$i} {
         grid-area: auto / span $i;
       }
