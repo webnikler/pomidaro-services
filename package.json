@@ -2,7 +2,9 @@
   "name": "@pomidaro-services/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "build:storybook": "npx nx run uikit-web:build-storybook"
+  },
   "private": true,
   "dependencies": {
     "classnames": "^2.5.1",
