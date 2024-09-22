@@ -2,11 +2,10 @@ import PropTypes from 'prop-types';
 import cn from 'classnames';
 import css from './Grid.module.scss';
 import { GridComponent } from './Grid.types';
+import { toPixels } from '@shared/helpers';
 
 const COLUMN_GAP_CSS_VAR = '--gridColumnGap';
 const ROW_GAP_CSS_VAR = '--gridRowGap';
-
-const toPixels = (value?: number) => value && value + 'px';
 
 export const Grid: GridComponent = ({
   children,

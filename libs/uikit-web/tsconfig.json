@@ -4,7 +4,11 @@
     "allowJs": false,
     "esModuleInterop": false,
     "allowSyntheticDefaultImports": true,
-    "strict": true
+    "strict": true,
+    "paths": {
+      "@shared/*": ["libs/uikit-web/src/lib/shared/*"],
+      "@components/*": ["libs/uikit-web/src/lib/components/*"],
+    }
   },
   "files": [],
   "include": [],

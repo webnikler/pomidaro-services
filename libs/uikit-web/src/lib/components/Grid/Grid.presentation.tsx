@@ -1,7 +1,7 @@
 import React from 'react';
 import Grid from './Grid';
 import { useMediaQuery } from '@react-hook/media-query';
-import { MediaQueries } from '../../shared/enums/media-query';
+import { MediaQueries } from '@shared/enums';
 
 const gridStyles: React.CSSProperties = {
   height: '100%',

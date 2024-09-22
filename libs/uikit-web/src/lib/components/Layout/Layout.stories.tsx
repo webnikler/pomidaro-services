@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Layout, LayoutPalette } from './Layout';
-import { GridPresentation } from '../Grid/Grid.presentation';
+import { GridPresentation } from '@components/Grid/Grid.presentation';
 
 type LayoutWithCustomArgs = React.ComponentProps<typeof Layout> & {
   isHideHeader: boolean;

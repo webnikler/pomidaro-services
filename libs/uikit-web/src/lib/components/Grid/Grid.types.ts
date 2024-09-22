@@ -1,5 +1,5 @@
 import React from 'react';
-import { WithChildrenProp } from '../../shared/types';
+import { WithChildrenProp } from '@shared/types';
 
 type GridProps = {
   rowGap?: number;
