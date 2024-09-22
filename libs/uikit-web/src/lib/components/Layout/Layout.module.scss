@@ -1,6 +1,6 @@
 @use 'sass:map';
 @use 'Layout.palette' as palette;
-@use '../../shared/styles/media-query.scss' as mediaQuery;
+@use '../../shared/features/media-query/media-query.scss' as mediaQuery;
 
 @mixin border {
   border-width: 1px;

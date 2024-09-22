@@ -1,9 +1,13 @@
 import React from 'react';
-import { WithChildrenProp } from '@shared/types';
+import type { WithChildrenProp } from '@shared/common/types';
+import { type MediaQueryProp } from '@shared/features/media-query';
 
 type GridProps = {
-  rowGap?: number;
-  columnGap?: number;
+  gap?: MediaQueryProp<number>,
+  rowGap?: MediaQueryProp<number>,
+  columnGap?: MediaQueryProp<number>,
+  margins?: MediaQueryProp<number>,
+  columns?: MediaQueryProp<number>,
 } & React.HTMLAttributes<HTMLElement> & WithChildrenProp;
 
 type GridItemProps = {
@@ -14,4 +18,6 @@ type GridSubComponents = {
   Item: React.FC<GridItemProps>;
 };
 
-export type GridComponent = React.FC<GridProps> & GridSubComponents;
+type GridComponent = React.FC<GridProps> & GridSubComponents;
+
+export { GridComponent };

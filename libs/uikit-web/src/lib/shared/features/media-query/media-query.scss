@@ -4,11 +4,11 @@ $mediaQueries: (
   xs: '(max-width: 599px)',
   sm: '(min-width: 600px) and (max-width: 904px)',
   md: '(min-width: 905px) and (max-width: 1239px)',
-  lg: '(min-width: 1240) and (max-width: 1439px)',
+  lg: '(min-width: 1240px) and (max-width: 1439px)',
   xl: '(min-width: 1440px)',
 );
 
-$argsError: 'Допустимые значения аргументов: xs, sm, md, lg, xl';
+$_argsError: 'Допустимые значения аргументов: xs, sm, md, lg, xl';
 
 @function _validateToken($token) {
   @each $mediaQueryToken, $_ in $mediaQueries {
@@ -17,7 +17,7 @@ $argsError: 'Допустимые значения аргументов: xs, sm,
     }
   }
 
-  @error #{$argsError};
+  @error #{$_argsError};
 }
 
 @function _getQuery($token) {
@@ -29,7 +29,7 @@ $argsError: 'Допустимые значения аргументов: xs, sm,
   $argsLength: length($tokens);
 
   @if ($argsLength == 0) {
-    @error #{$argsError};
+    @error #{$_argsError};
   }
 
   @if ($argsLength == 1) {

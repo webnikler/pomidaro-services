@@ -1,40 +1,50 @@
-@use '../../shared/styles/media-query.scss' as mediaQuery;
+@use '../../shared/features/media-query/media-query.scss' as mediaQuery;
 
-$defaultGap: 16px;
-$totalCols: 12;
-
-@mixin configureGridTemplate {
-  grid-template-columns: repeat(12, 1fr);
-
-  @include mediaQuery.use(xs) {
-    grid-template-columns: repeat(4, 1fr);
-  }
-  @include mediaQuery.use(sm) {
-    grid-template-columns: repeat(8, 1fr);
+@mixin useMargins {
+  @each $token, $_ in mediaQuery.$mediaQueries {
+    @include mediaQuery.use($token) {
+      margin: 0 var(--grid-margin-#{$token}, 16px);
+    }
   }
 }
 
-@mixin configureGridGaps {
-  row-gap: var(--gridRowGap);
-  column-gap: var(--gridColumnGap);
-  margin-left: var(--gridColumnGap);
-  margin-right: var(--gridColumnGap);
+@mixin useColumns {
+  @each $token, $_ in mediaQuery.$mediaQueries {
+    @include mediaQuery.use($token) {
+      grid-template-columns: repeat(var(--grid-columns-#{$token}, 12), 1fr);
+    }
+  }
+}
+
+@mixin useRowGap {
+  @each $token, $_ in mediaQuery.$mediaQueries {
+    @include mediaQuery.use($token) {
+      row-gap: var(--grid-row-gap-#{$token}, 16px);
+    }
+  }
+}
+
+@mixin useColumnGap {
+  @each $token, $_ in mediaQuery.$mediaQueries {
+    @include mediaQuery.use($token) {
+      column-gap: var(--grid-column-gap-#{$token}, 16px);
+    }
+  }
 }
 
 .Grid {
-  --gridRowGap: #{$defaultGap};
-  --gridColumnGap: #{$defaultGap};
-
   display: grid;
 
-  @include configureGridGaps;
-  @include configureGridTemplate;
+  @include useMargins;
+  @include useColumns;
+  @include useRowGap;
+  @include useColumnGap;
 
   &Item {
     grid-area: auto;
 
-    @for $i from 1 through $totalCols {
-      &.col-#{$i} {
+    @for $i from 1 through 12 {
+      &.size-#{$i} {
         grid-area: auto / span $i;
       }
     }

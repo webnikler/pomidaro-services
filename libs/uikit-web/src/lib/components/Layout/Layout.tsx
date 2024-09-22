@@ -1,7 +1,6 @@
 import css from './Layout.module.scss';
 import cn from 'classnames';
-import PropTypes from 'prop-types';
-import { LayoutComponent, LayoutPalette } from './Layout.types';
+import { type LayoutComponent, LayoutPalette } from './Layout.types';
 
 export const Layout: LayoutComponent = ({
   children,
@@ -25,15 +24,6 @@ export const Layout: LayoutComponent = ({
     </section>
   </main>
 );
-
-Layout.propTypes = {
-  palette: PropTypes.oneOf(Object.values(LayoutPalette)).isRequired,
-  header: PropTypes.element,
-  sidebar: PropTypes.element,
-  sidebarHeader: PropTypes.element,
-  contentHeader: PropTypes.element,
-  responsive: PropTypes.bool,
-};
 
 Layout.Header = ({ children }) => (
   <header className={css.Header}>{children}</header>

@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import { WithChildrenProp } from '@shared/types';
+import type { WithChildrenProp } from '@shared/common/types';
 
 type WithHeaderSlot = {
   header?: ReactElement;

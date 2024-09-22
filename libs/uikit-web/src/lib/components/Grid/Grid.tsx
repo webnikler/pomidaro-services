@@ -1,22 +1,26 @@
-import PropTypes from 'prop-types';
 import cn from 'classnames';
 import css from './Grid.module.scss';
-import { GridComponent } from './Grid.types';
-import { toPixels } from '@shared/helpers';
-
-const COLUMN_GAP_CSS_VAR = '--gridColumnGap';
-const ROW_GAP_CSS_VAR = '--gridRowGap';
+import type { GridComponent } from './Grid.types';
+import { useCSSVarsFromMediaQueryProp } from '@shared/features/media-query';
+import { units } from '@shared/common/helpers';
 
 export const Grid: GridComponent = ({
-  children,
+  gap,
   rowGap,
   columnGap,
+  margins,
+  columns,
+  children,
   style,
   ...props
 }) => {
+  const useCssVars = useCSSVarsFromMediaQueryProp.namespace('grid');
+  
   const styles = {
-    [COLUMN_GAP_CSS_VAR]: toPixels(columnGap),
-    [ROW_GAP_CSS_VAR]: toPixels(rowGap),
+    ...useCssVars('margin', margins, units.px),
+    ...useCssVars('row-gap', rowGap || gap, units.px),
+    ...useCssVars('column-gap', columnGap || gap, units.px),
+    ...useCssVars('columns', columns),
     ...style,
   } as React.CSSProperties;
 
@@ -30,17 +34,8 @@ export const Grid: GridComponent = ({
   );
 };
 
-Grid.propTypes = {
-  rowGap: PropTypes.number,
-  columnGap: PropTypes.number,
-};
-
 Grid.Item = ({ children, col = 12, ...props }) => (
-  <section className={cn(css.GridItem, css[`col-${col}`])} {...props}>{children}</section>
+  <section className={cn(css.GridItem, css[`size-${col}`])} {...props}>{children}</section>
 );
-
-Grid.Item.propTypes = {
-  col: PropTypes.oneOf([1,2,3,4,5,6,7,8,9,10,11,12]),
-};
 
 export default Grid;
