@@ -1,1 +1,1 @@
-export type { WithChildrenProp } from './with-children-prop';
+export type * from './props';

@@ -32,6 +32,14 @@
   }
 }
 
+@mixin useSize {
+  @each $token, $_ in mediaQuery.$mediaQueries {
+    @include mediaQuery.use($token) {
+      grid-area: auto / span var(--grid-item-size-#{$token}, 12);
+    }
+  }
+}
+
 .Grid {
   display: grid;
 
@@ -43,10 +51,6 @@
   &Item {
     grid-area: auto;
 
-    @for $i from 1 through 12 {
-      &.size-#{$i} {
-        grid-area: auto / span $i;
-      }
-    }
+    @include useSize;
   }
 }

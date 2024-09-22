@@ -10,9 +10,9 @@ type StoryArgs = {
 const meta: Meta<StoryArgs> = {
   title: 'components/Icons',
   render: (props) => (
-    <Grid margins={100}>
+    <Grid columns={12}>
       {Object.values(icons).map((Icon, i) => (
-        <Grid.Item key={i} col={1} style={{ display: 'flex', justifyContent: 'center' }}>
+        <Grid.Item key={i} size={1} style={{ display: 'flex', justifyContent: 'center' }}>
           <Icon {...props} />
         </Grid.Item>
       ))}

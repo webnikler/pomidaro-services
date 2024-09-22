@@ -1,11 +1,11 @@
 import React, { ReactElement } from 'react';
-import type { WithChildrenProp } from '@shared/common/types';
+import type { PropsChildren } from '@shared/common/types';
 
-type WithHeaderSlot = {
+type PropsHeader = {
   header?: ReactElement;
 };
 
-type WithResponsive = {
+type PropsResponsive = {
   responsive?: boolean;
 }
 
@@ -16,14 +16,14 @@ type LayoutProps = {
   contentHeader?: ReactElement;
   palette?: LayoutPalette;
   responsive?: boolean;
-} & WithChildrenProp;
+} & PropsChildren;
 
 type LayoutSubComponents = {
-  Header: React.FC<WithChildrenProp>;
-  Content: React.FC<WithChildrenProp & WithHeaderSlot & WithResponsive>;
-  ContentHeader: React.FC<WithChildrenProp>;
-  Sidebar: React.FC<WithChildrenProp & WithHeaderSlot>;
-  SidebarHeader: React.FC<WithChildrenProp>;
+  Header: React.FC<PropsChildren>;
+  Content: React.FC<PropsChildren & PropsHeader & PropsResponsive>;
+  ContentHeader: React.FC<PropsChildren>;
+  Sidebar: React.FC<PropsChildren & PropsHeader>;
+  SidebarHeader: React.FC<PropsChildren>;
 };
 
 export enum LayoutPalette {

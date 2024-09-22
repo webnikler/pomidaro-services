@@ -1,6 +1,8 @@
 import React from 'react';
-import type { WithChildrenProp } from '@shared/common/types';
+import type { PropsChildren, PropsHTMLAttributes } from '@shared/common/types';
 import { type MediaQueryProp } from '@shared/features/media-query';
+
+type GridItemSize = 1|2|3|4|5|6|7|8|9|10|11|12;
 
 type GridProps = {
   gap?: MediaQueryProp<number>,
@@ -8,16 +10,18 @@ type GridProps = {
   columnGap?: MediaQueryProp<number>,
   margins?: MediaQueryProp<number>,
   columns?: MediaQueryProp<number>,
-} & React.HTMLAttributes<HTMLElement> & WithChildrenProp;
+} & PropsHTMLAttributes & PropsChildren;
 
 type GridItemProps = {
-  col?: 1|2|3|4|5|6|7|8|9|10|11|12;
-} & React.HTMLAttributes<HTMLElement> & WithChildrenProp;
+  size?: MediaQueryProp<GridItemSize>;
+} & PropsHTMLAttributes & PropsChildren;
+
+type GridItemComponent = React.FC<GridItemProps>;
 
 type GridSubComponents = {
-  Item: React.FC<GridItemProps>;
+  Item: GridItemComponent;
 };
 
 type GridComponent = React.FC<GridProps> & GridSubComponents;
 
-export { GridComponent };
+export { GridComponent, GridItemComponent };

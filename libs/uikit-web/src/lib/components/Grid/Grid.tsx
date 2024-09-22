@@ -1,6 +1,5 @@
-import cn from 'classnames';
 import css from './Grid.module.scss';
-import type { GridComponent } from './Grid.types';
+import type { GridComponent, GridItemComponent } from './Grid.types';
 import { useCSSVarsFromMediaQueryProp } from '@shared/features/media-query';
 import { units } from '@shared/common/helpers';
 
@@ -34,8 +33,24 @@ export const Grid: GridComponent = ({
   );
 };
 
-Grid.Item = ({ children, col = 12, ...props }) => (
-  <section className={cn(css.GridItem, css[`size-${col}`])} {...props}>{children}</section>
-);
+const Item: GridItemComponent = ({ children, size, style, ...props }) => {
+  const useCssVars = useCSSVarsFromMediaQueryProp.namespace('grid-item');
+
+  const styles = {
+    ...useCssVars('size', size),
+    ...style,
+  } as React.CSSProperties;
+
+  return (
+    <section
+      className={css.GridItem}
+      style={styles}
+      {...props}>
+      {children}
+    </section>
+  );
+};
+
+Grid.Item = Item;
 
 export default Grid;
