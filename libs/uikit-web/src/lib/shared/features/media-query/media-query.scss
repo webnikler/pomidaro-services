@@ -1,4 +1,5 @@
 @use 'sass:list';
+@use 'sass:map';
 
 $mediaQueries: (
   xs: '(max-width: 599px)',
@@ -8,7 +9,7 @@ $mediaQueries: (
   xl: '(min-width: 1440px)',
 );
 
-$_argsError: 'Допустимые значения аргументов: xs, sm, md, lg, xl';
+$_argsError: 'Допустимые значения аргументов: #{map.keys($mediaQueries)}';
 
 @function _validateToken($token) {
   @each $mediaQueryToken, $_ in $mediaQueries {
@@ -17,7 +18,7 @@ $_argsError: 'Допустимые значения аргументов: xs, sm
     }
   }
 
-  @error #{$_argsError};
+  @error $_argsError;
 }
 
 @function _getQuery($token) {
@@ -29,7 +30,7 @@ $_argsError: 'Допустимые значения аргументов: xs, sm
   $argsLength: length($tokens);
 
   @if ($argsLength == 0) {
-    @error #{$_argsError};
+    @error $_argsError;
   }
 
   @if ($argsLength == 1) {
