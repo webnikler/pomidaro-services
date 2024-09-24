@@ -6,49 +6,32 @@ import { Palette } from '@shared/common/constants';
 import { ThemeProvider } from '@providers/theme';
 import { type LayoutPresentationProps } from './Layout.types';
 
-const LayoutPresentation: React.FC<LayoutPresentationProps> = ({
-  isShowHeader,
-  leftSidebarWidth,
-  rightSidebarWidth,
-  isLeftSidebarFixed,
-  isRightSidebarFixed,
-  isLeftSidebarHidden,
-  isRightSidebarHidden,
-  isShowLeftSidebar,
-  isShowLeftSidebarHeader,
-  isShowRightSidebar,
-  isShowRightSidebarHeader,
-  isShowContentHeader,
-  isShowLayoutContentGrid,
-  responsive,
-  palette,
-  isDark,
-}) => {
+const LayoutPresentation: React.FC<LayoutPresentationProps> = (p) => {
   return (
-    <ThemeProvider palette={palette} isDark={isDark}>
-      <Layout header={isShowHeader && <Layout.Header />}>
+    <ThemeProvider palette={p.palette} isDark={p.isDark}>
+      <Layout header={p.isShowHeader && <Layout.Header />}>
         {
-          isShowLeftSidebar &&
+          p.isShowLeftSidebar &&
             <Sidebar.Left
-              header={isShowLeftSidebarHeader && <Sidebar.Header />}
-              hidden={isLeftSidebarHidden}
-              fixed={isLeftSidebarFixed}
-              width={leftSidebarWidth}
+              header={p.isShowLeftSidebarHeader && <Sidebar.Header />}
+              hidden={p.isLeftSidebarHidden}
+              fixed={p.isLeftSidebarFixed}
+              width={p.leftSidebarWidth}
             />
         }
         <Content
-          responsive={responsive}
-          header={isShowContentHeader && <Content.Header />}
+          responsive={p.responsive}
+          header={p.isShowContentHeader && <Content.Header />}
         >
-          {isShowLayoutContentGrid && <GridPresentation />}
+          {p.isShowLayoutContentGrid && <GridPresentation />}
         </Content>
         {
-          isShowRightSidebar &&
+          p.isShowRightSidebar &&
             <Sidebar.Right
-              header={isShowRightSidebarHeader && <Sidebar.Header />}
-              hidden={isRightSidebarHidden}
-              fixed={isRightSidebarFixed}
-              width={rightSidebarWidth}
+              header={p.isShowRightSidebarHeader && <Sidebar.Header />}
+              hidden={p.isRightSidebarHidden}
+              fixed={p.isRightSidebarFixed}
+              width={p.rightSidebarWidth}
             />
         }
       </Layout>
