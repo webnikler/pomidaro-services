@@ -13,13 +13,13 @@ export const Grid: GridComponent = ({
   style,
   ...props
 }) => {
-  const useCssVars = useCSSVarsFromMediaQueryProp.namespace('grid');
+  const useMediaQueryVars = useCSSVarsFromMediaQueryProp.namespace('grid');
   
   const styles = {
-    ...useCssVars('margin', margins, units.px),
-    ...useCssVars('row-gap', rowGap || gap, units.px),
-    ...useCssVars('column-gap', columnGap || gap, units.px),
-    ...useCssVars('columns', columns),
+    ...useMediaQueryVars('margin', margins, units.px),
+    ...useMediaQueryVars('row-gap', rowGap || gap, units.px),
+    ...useMediaQueryVars('column-gap', columnGap || gap, units.px),
+    ...useMediaQueryVars('columns', columns),
     ...style,
   } as React.CSSProperties;
 
@@ -34,10 +34,10 @@ export const Grid: GridComponent = ({
 };
 
 const Item: GridItemComponent = ({ children, size, style, ...props }) => {
-  const useCssVars = useCSSVarsFromMediaQueryProp.namespace('grid-item');
+  const useMediaQueryVars = useCSSVarsFromMediaQueryProp.namespace('grid-item');
 
   const styles = {
-    ...useCssVars('size', size),
+    ...useMediaQueryVars('size', size),
     ...style,
   } as React.CSSProperties;
 

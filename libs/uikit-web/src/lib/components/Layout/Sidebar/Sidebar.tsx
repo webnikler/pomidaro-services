@@ -15,12 +15,12 @@ const Sidebar: SidebarComponent = ({
 }) => {
   const { palette } = useTheme();
   const className = cn(css.Sidebar, css[placement]);
-  const useCssVars = useCSSVarsFromMediaQueryProp.namespace('sidebar');
+  const useMediaQueryVars = useCSSVarsFromMediaQueryProp.namespace('sidebar');
 
   const styles = {
     '--sidebar-fill': SIDEBAR_COLORS[palette].fill,
     '--sidebar-stroke': SIDEBAR_COLORS[palette].stroke,
-    ...useCssVars('width', width, units.px),
+    ...useMediaQueryVars('width', width, units.px),
     ...style,
   } as React.CSSProperties;
 
