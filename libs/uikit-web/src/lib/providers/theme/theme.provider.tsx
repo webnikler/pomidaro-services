@@ -1,6 +1,6 @@
-import React, { useCallback, useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Palette } from '@shared/common/constants';
-import { ThemeProviderProps } from './theme.types';
+import type { ThemeProviderProps } from './theme.types';
 
 const PROVIDER_NOT_FOUND = 'ThemeProvider is not found!';
 const error: () => void = () => {throw Error(PROVIDER_NOT_FOUND)};
@@ -13,7 +13,6 @@ const ThemeContext = React.createContext({
   isDark: DEFAULT_IS_DARK,
   setPalette: (_: Palette) => error(),
   setDark: (_: boolean) => error(),
-  toggleDark: () => error(),
 });
 
 const ThemeProvider = ({
@@ -22,11 +21,8 @@ const ThemeProvider = ({
   isDark: _isDark = DEFAULT_IS_DARK,
 }: ThemeProviderProps) => {
   const [palette, setPalette] = useState(DEFAULT_PALETTE);
+  // for toggle use setDark(v => !v)
   const [isDark, setDark] = useState(DEFAULT_IS_DARK);
-  const toggleDark = useCallback(() => setDark(!isDark), [
-    isDark,
-    setDark,
-  ]);
 
   useEffect(() => setPalette(_palette), [_palette]);
   useEffect(() => setDark(_isDark), [_isDark]);
@@ -37,7 +33,6 @@ const ThemeProvider = ({
       isDark,
       setPalette,
       setDark,
-      toggleDark,
     }}>
       {children}
     </ThemeContext.Provider>
