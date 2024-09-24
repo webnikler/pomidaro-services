@@ -156,7 +156,7 @@ export const Base: Story = {
       },
     },
     isShowLeftSidebarHeader: {
-      name: 'Включить шапку сайдбара',
+      name: 'Включить шапку',
       table: {
         category: 'Настройки левого сайдбара',
       },
@@ -168,13 +168,13 @@ export const Base: Story = {
       },
     },
     isShowRightSidebarHeader: {
-      name: 'Включить шапку сайдбара',
+      name: 'Включить шапку',
       table: {
         category: 'Настройки правого сайдбара',
       },
     },
     isShowContentHeader: {
-      name: 'Показывать шапку',
+      name: 'Включить шапку',
       table: {
         category: 'Настройки контентной зоны',
       }
