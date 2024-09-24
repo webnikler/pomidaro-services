@@ -1,7 +1,6 @@
 @use '../../../shared/features/media-query/media-query.scss' as mediaQuery;
 @use '../grid' as grid;
 
-
 .Sidebar {
   background: var(--sidebar-fill, #333);
   border: 1px solid var(--sidebar-stroke, #333);
@@ -17,8 +16,34 @@
     @include grid.sidebar(left);
   }
 
+  &.left.fixed {
+    left: 0;
+  }
+
+  &.left.fixed.hidden {
+    transform: translateX(-100%);
+  }
+
   &.right {
     @include grid.sidebar(right);
+  }
+
+  &.right.fixed {
+    right: 0;
+  }
+
+  &.right.fixed.hidden {
+    transform: translateX(100%);
+  }
+
+  &.fixed {
+    position: absolute;
+    z-index: 1;
+    height: 100%;
+    top: 0;
+    transform: translateX(0);
+    will-change: transform;
+    transition: transform .3s;
   }
 
   .Header {

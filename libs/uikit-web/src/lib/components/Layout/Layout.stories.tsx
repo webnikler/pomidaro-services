@@ -10,6 +10,10 @@ const LayoutPresentation: React.FC<LayoutPresentationProps> = ({
   isShowHeader,
   leftSidebarWidth,
   rightSidebarWidth,
+  isLeftSidebarFixed,
+  isRightSidebarFixed,
+  isLeftSidebarHidden,
+  isRightSidebarHidden,
   isShowLeftSidebar,
   isShowLeftSidebarHeader,
   isShowRightSidebar,
@@ -22,25 +26,30 @@ const LayoutPresentation: React.FC<LayoutPresentationProps> = ({
 }) => {
   return (
     <ThemeProvider palette={palette} isDark={isDark}>
-      <Layout header={
-        isShowHeader && <Layout.Header />
-      }>
+      <Layout header={isShowHeader && <Layout.Header />}>
         {
-          isShowLeftSidebar && <Sidebar.Left width={leftSidebarWidth} header={
-            isShowLeftSidebarHeader && <Sidebar.Header />
-          } />
+          isShowLeftSidebar &&
+            <Sidebar.Left
+              header={isShowLeftSidebarHeader && <Sidebar.Header />}
+              hidden={isLeftSidebarHidden}
+              fixed={isLeftSidebarFixed}
+              width={leftSidebarWidth}
+            />
         }
-        <Content responsive={responsive} header={
-          isShowContentHeader && <Content.Header />
-        }>
-          {
-            isShowLayoutContentGrid && <GridPresentation />
-          }
+        <Content
+          responsive={responsive}
+          header={isShowContentHeader && <Content.Header />}
+        >
+          {isShowLayoutContentGrid && <GridPresentation />}
         </Content>
         {
-          isShowRightSidebar && <Sidebar.Right width={rightSidebarWidth} header={
-            isShowRightSidebarHeader && <Sidebar.Header />
-          } />
+          isShowRightSidebar &&
+            <Sidebar.Right
+              header={isShowRightSidebarHeader && <Sidebar.Header />}
+              hidden={isRightSidebarHidden}
+              fixed={isRightSidebarFixed}
+              width={rightSidebarWidth}
+            />
         }
       </Layout>
     </ThemeProvider>
@@ -66,49 +75,109 @@ export const Base: Story = {
       options: Object.values(Palette),
       name: 'Палитра',
       control: 'select',
+      table: {
+        category: 'Темизация',
+      },
     },
     isDark: {
       name: 'Включить темную тему',
+      table: {
+        category: 'Темизация',
+      },
     },
     responsive: {
       name: 'Не ограничивать по ширине',
+      table: {
+        category: 'Настройки контентной зоны',
+      },
     },
     isShowLayoutContentGrid: {
-      name: 'Показывать сетку',
+      name: 'Показать сетку',
+      table: {
+        category: 'Настройки контентной зоны',
+      },
     },
     isShowHeader: {
-      name: 'Показывать основную шапку',
+      name: 'Включить шапку',
+      table: {
+        category: 'Настройки лейаута',
+      },
     },
     leftSidebarWidth: {
-      name: 'Ширина левого сайдбара',
+      name: 'Ширина сайдбара',
       control: {
         type: 'range',
         min: 200,
         max: 320,
+      },
+      table: {
+        category: 'Настройки левого сайдбара',
       },
     },
     rightSidebarWidth: {
-      name: 'Ширина правого сайдбара',
+      name: 'Ширина сайдбара',
       control: {
         type: 'range',
         min: 200,
         max: 320,
       },
+      table: {
+        category: 'Настройки правого сайдбара',
+      },
+    },
+    isLeftSidebarFixed: {
+      name: 'Сайдбар откреплен от лейаута',
+      table: {
+        category: 'Настройки левого сайдбара',
+      },
+    },
+    isRightSidebarFixed: {
+      name: 'Сайдбар откреплен от лейаута',
+      table: {
+        category: 'Настройки правого сайдбара',
+      },
+    },
+    isLeftSidebarHidden: {
+      name: 'Сайдбар свернут (должен быть откреплен)',
+      table: {
+        category: 'Настройки левого сайдбара',
+      },
+    },
+    isRightSidebarHidden: {
+      name: 'Сайдбар свернут (должен быть откреплен)',
+      table: {
+        category: 'Настройки правого сайдбара',
+      },
     },
     isShowLeftSidebar: {
-      name: 'Показывать левое боковое меню',
+      name: 'Включить сайдбар',
+      table: {
+        category: 'Настройки левого сайдбара',
+      },
     },
     isShowLeftSidebarHeader: {
-      name: 'Показывать шапку левого бокового меню',
+      name: 'Включить шапку сайдбара',
+      table: {
+        category: 'Настройки левого сайдбара',
+      },
     },
     isShowRightSidebar: {
-      name: 'Показывать правое боковое меню',
+      name: 'Включить сайдбар',
+      table: {
+        category: 'Настройки правого сайдбара',
+      },
     },
     isShowRightSidebarHeader: {
-      name: 'Показывать шапку правого бокового меню',
+      name: 'Включить шапку сайдбара',
+      table: {
+        category: 'Настройки правого сайдбара',
+      },
     },
     isShowContentHeader: {
-      name: 'Показывать шапку контентной зоны',
+      name: 'Показывать шапку',
+      table: {
+        category: 'Настройки контентной зоны',
+      }
     },
   },
   args: {
@@ -119,6 +188,10 @@ export const Base: Story = {
     isShowHeader: true,
     leftSidebarWidth: 320,
     rightSidebarWidth: 200,
+    isLeftSidebarFixed: false,
+    isRightSidebarFixed: false,
+    isLeftSidebarHidden: false,
+    isRightSidebarHidden: false,
     isShowLeftSidebar: true,
     isShowLeftSidebarHeader: true,
     isShowRightSidebar: true,

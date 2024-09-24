@@ -11,11 +11,17 @@ const Sidebar: SidebarComponent = ({
   children,
   style,
   width,
+  fixed = true,
+  hidden = false,
   placement = 'left',
 }) => {
   const { palette } = useTheme();
-  const className = cn(css.Sidebar, css[placement]);
   const useMediaQueryVars = useCSSVarsFromMediaQueryProp.namespace('sidebar');
+  const className = cn(css.Sidebar, css[placement], {
+    [css.fixed]: fixed,
+    [css.hidden]: hidden,
+  });
+  
 
   const styles = {
     '--sidebar-fill': SIDEBAR_COLORS[palette].fill,

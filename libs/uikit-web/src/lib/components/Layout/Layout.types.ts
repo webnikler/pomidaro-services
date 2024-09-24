@@ -12,6 +12,8 @@ type LayoutProps = PropsHeader & PropsChildren & PropsHTMLAttributes;
 export type SidebarProps = PropsHeader & PropsChildren & PropsHTMLAttributes & {
   placement?: 'left' | 'right';
   width?: MediaQueryProp<number>;
+  fixed?: boolean;
+  hidden?: boolean;
 }
 
 type ContentProps = PropsHeader & PropsChildren & PropsHTMLAttributes & {
@@ -46,6 +48,10 @@ export type LayoutPresentationProps = ComponentProps<LayoutComponent> & {
   isShowHeader: boolean;
   leftSidebarWidth: number,
   rightSidebarWidth: number,
+  isLeftSidebarFixed: boolean,
+  isRightSidebarFixed: boolean,
+  isLeftSidebarHidden: boolean,
+  isRightSidebarHidden: boolean,
   isShowLeftSidebar: boolean;
   isShowLeftSidebarHeader: boolean;
   isShowRightSidebar: boolean;
