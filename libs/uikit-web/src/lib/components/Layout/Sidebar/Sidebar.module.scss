@@ -1,0 +1,23 @@
+@use '../grid' as grid;
+
+.Sidebar {
+  width: 320px;
+  background: var(--sidebar-fill, #333);
+  border: 1px solid var(--sidebar-stroke, #333);
+  box-sizing: border-box;
+
+  &.left {
+    @include grid.sidebar(left);
+  }
+
+  &.right {
+    @include grid.sidebar(right);
+  }
+
+  .Header {
+    background: var(--sidebar-header-fill, #333);
+    border: 1px solid var(--sidebar-header-stroke, #333);
+    box-sizing: border-box;
+    height: 62px;
+  }
+}

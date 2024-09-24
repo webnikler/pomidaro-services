@@ -43,7 +43,7 @@ const Item: GridItemComponent = ({ children, size, style, ...props }) => {
 
   return (
     <section
-      className={css.GridItem}
+      className={css.Item}
       style={styles}
       {...props}>
       {children}

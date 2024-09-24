@@ -48,7 +48,7 @@
   @include useRowGap;
   @include useColumnGap;
 
-  &Item {
+  & .Item {
     grid-area: auto;
 
     @include useSize;

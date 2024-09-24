@@ -1,50 +1,60 @@
+import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { Layout, LayoutPalette } from './Layout';
+import { Layout, Content, Sidebar } from '.';
 import { GridPresentation } from '@components/Grid/Grid.presentation';
+import { Palette } from '@shared/common/constants';
+import { ThemeProvider } from '@providers/theme';
+import { type LayoutPresentationProps } from './Layout.types';
 
-type LayoutWithCustomArgs = React.ComponentProps<typeof Layout> & {
-  isHideHeader: boolean;
-  isHideSidebar: boolean;
-  isHideSidebarHeader: boolean;
-  isHideContentHeader: boolean;
-  isShowLayoutContentGrid: boolean;
+const LayoutPresentation: React.FC<LayoutPresentationProps> = ({
+  isShowHeader,
+  isShowSidebar,
+  isShowSidebarHeader,
+  isShowContentHeader,
+  isShowLayoutContentGrid,
+  responsive,
+  palette,
+  isDark,
+}) => {
+  const sidebarHeader = isShowSidebarHeader && <Sidebar.Header />;
+  const contentHeader = isShowContentHeader && <Content.Header />;
+  const header = isShowHeader && <Layout.Header />;
+
+  return (
+    <ThemeProvider palette={palette} isDark={isDark}>
+      <Layout header={header}>
+        {isShowSidebar && <Sidebar left header={sidebarHeader} />}
+        <Content responsive={responsive} header={contentHeader}>
+          { isShowLayoutContentGrid && <GridPresentation /> }
+        </Content>
+        {isShowSidebar && <Sidebar right header={sidebarHeader} />}
+      </Layout>
+    </ThemeProvider>
+  );
 };
 
-const meta: Meta<LayoutWithCustomArgs> = {
+const meta: Meta<LayoutPresentationProps> = {
   component: Layout,
   parameters: {
     layout: 'fullscreen',
   },
-  render: ({
-    isHideHeader,
-    isHideSidebar,
-    isHideSidebarHeader,
-    isHideContentHeader,
-    isShowLayoutContentGrid,
-    ...args
-  }) => (
-    <Layout
-      {...args}
-      header={isHideHeader ? undefined : <Layout.Header />}
-      sidebar={isHideSidebar ? undefined : <Layout.Sidebar />}
-      sidebarHeader={isHideSidebarHeader ? undefined : <Layout.SidebarHeader />}
-      contentHeader={isHideContentHeader ? undefined : <Layout.ContentHeader />}
-    >
-      { isShowLayoutContentGrid && <GridPresentation /> }
-    </Layout>
-  ),
+  render: props => <LayoutPresentation {...props} />,
 };
 
 export default meta;
 
-type Story = StoryObj<LayoutWithCustomArgs>;
+type Story = StoryObj<LayoutPresentationProps>;
 
 export const Base: Story = {
   name: 'Layout',
   argTypes: {
     palette: {
-      options: Object.values(LayoutPalette),
+      options: Object.values(Palette),
       name: 'Палитра',
+      control: 'select',
+    },
+    isDark: {
+      name: 'Включить темную тему'
     },
     responsive: {
       name: 'Не ограничивать по ширине',
@@ -52,38 +62,27 @@ export const Base: Story = {
     isShowLayoutContentGrid: {
       name: 'Показывать сетку',
     },
-    isHideHeader: {
-      name: 'Скрыть основную шапку'
+    isShowHeader: {
+      name: 'Показывать основную шапку'
     },
-    isHideSidebar: {
-      name: 'Скрыть боковое меню'
+    isShowSidebar: {
+      name: 'Показывать боковое меню'
     },
-    isHideSidebarHeader: {
-      name: 'Скрыть шапку бокового меню'
+    isShowSidebarHeader: {
+      name: 'Показывать шапку бокового меню'
     },
-    isHideContentHeader: {
-      name: 'Скрыть шапку контентной зоны'
-    },
-    header: {
-      control: false,
-    },
-    sidebar: {
-      control: false,
-    },
-    sidebarHeader: {
-      control: false,
-    },
-    contentHeader: {
-      control: false,
+    isShowContentHeader: {
+      name: 'Показывать шапку контентной зоны'
     },
   },
   args: {
-    palette: LayoutPalette.LightBlue,
+    palette: Palette.LightBlue,
+    isDark: false,
     isShowLayoutContentGrid: true,
     responsive: false,
-    isHideHeader: false,
-    isHideSidebar: false,
-    isHideSidebarHeader: false,
-    isHideContentHeader: false,
+    isShowHeader: true,
+    isShowSidebar: true,
+    isShowSidebarHeader: true,
+    isShowContentHeader: true,
   },
 };

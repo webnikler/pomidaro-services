@@ -19,6 +19,7 @@ const config: StorybookConfig = {
         alias: {
           '@shared': path.resolve(__dirname, '../src/lib/shared'),
           '@components': path.resolve(__dirname, '../src/lib/components'),
+          '@providers': path.resolve(__dirname, '../src/lib/providers'),
         },
       },
     });
@@ -26,7 +27,3 @@ const config: StorybookConfig = {
 };
 
 export default config;
-
-// To customize your Vite configuration you can use the viteFinal field.
-// Check https://storybook.js.org/docs/react/builders/vite#configuration
-// and https://nx.dev/recipes/storybook/custom-builder-configs

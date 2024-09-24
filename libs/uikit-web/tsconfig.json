@@ -8,6 +8,7 @@
     "paths": {
       "@shared/*": ["libs/uikit-web/src/lib/shared/*"],
       "@components/*": ["libs/uikit-web/src/lib/components/*"],
+      "@providers/*": ["libs/uikit-web/src/lib/providers/*"]
     }
   },
   "files": [],

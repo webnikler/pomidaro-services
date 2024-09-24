@@ -1,0 +1,26 @@
+$_row1: header header header;
+$_row2: sidebar-l content sidebar-r;
+
+@mixin root {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  grid-template-rows: auto 1fr;
+  grid-template-areas: '#{$_row1}' '#{$_row2}';
+}
+
+@mixin header {
+  grid-area: header;
+}
+
+@mixin content {
+  grid-area: content;
+}
+
+@mixin sidebar($placement) {
+  @if ($placement == left) {
+    grid-area: sidebar-l;
+  }
+  @if ($placement == right) {
+    grid-area: sidebar-r;
+  }
+}
