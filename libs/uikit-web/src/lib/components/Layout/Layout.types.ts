@@ -1,29 +1,30 @@
 import React, { ReactElement, ComponentProps } from 'react';
 import type { PropsChildren, PropsHTMLAttributes } from '@shared/common/types';
 import { Palette } from '@shared/common/constants';
+import { MediaQueryProp } from '@shared/features/media-query';
 
 type PropsHeader = {
   header?: ReactElement | null | false;
 }
 
-interface LayoutProps extends PropsHeader, PropsChildren, PropsHTMLAttributes {}
+type LayoutProps = PropsHeader & PropsChildren & PropsHTMLAttributes;
 
-interface SidebarProps extends PropsHeader, PropsChildren, PropsHTMLAttributes {
-  left?: boolean;
-  right?: boolean;
+export type SidebarProps = PropsHeader & PropsChildren & PropsHTMLAttributes & {
+  placement?: 'left' | 'right';
+  width?: MediaQueryProp<number>;
 }
 
-interface ContentProps extends PropsHeader, PropsChildren, PropsHTMLAttributes {
+type ContentProps = PropsHeader & PropsChildren & PropsHTMLAttributes & {
   responsive?: boolean;
 }
 
-interface ComponentWithHeader<P> extends React.FC<P> {
+type ComponentWithHeader<P> = React.FC<P> & {
   Header: React.FC<PropsChildren>;
 }
 
-interface LayoutHeaderProps extends PropsChildren, PropsHTMLAttributes {}
-interface ContentHeaderProps extends PropsChildren, PropsHTMLAttributes {}
-interface SidebarHeaderProps extends PropsChildren, PropsHTMLAttributes {}
+type LayoutHeaderProps = PropsChildren & PropsHTMLAttributes;
+type ContentHeaderProps = PropsChildren & PropsHTMLAttributes;
+type SidebarHeaderProps = PropsChildren & PropsHTMLAttributes;
 
 export type LayoutHeaderComponent = React.FC<LayoutHeaderProps>;
 export type ContentHeaderComponent = React.FC<ContentHeaderProps>;
@@ -31,17 +32,24 @@ export type SidebarHeaderComponent = React.FC<SidebarHeaderProps>;
 
 export type LayoutComponent = ComponentWithHeader<LayoutProps>;
 export type ContentComponent = ComponentWithHeader<ContentProps>;
-export type SidebarComponent = ComponentWithHeader<SidebarProps>;
+export type SidebarComponent = ComponentWithHeader<SidebarProps> & {
+  Right: React.FC<SidebarProps>;
+  Left: React.FC<SidebarProps>;
+};
 
 export type LayoutCSSColorVariables = Record<Palette, {
   fill: string;
   stroke?: string;
 }>
 
-export interface LayoutPresentationProps extends ComponentProps<LayoutComponent> {
+export type LayoutPresentationProps = ComponentProps<LayoutComponent> & {
   isShowHeader: boolean;
-  isShowSidebar: boolean;
-  isShowSidebarHeader: boolean;
+  leftSidebarWidth: number,
+  rightSidebarWidth: number,
+  isShowLeftSidebar: boolean;
+  isShowLeftSidebarHeader: boolean;
+  isShowRightSidebar: boolean;
+  isShowRightSidebarHeader: boolean;
   isShowContentHeader: boolean;
   isShowLayoutContentGrid: boolean;
   responsive: boolean;

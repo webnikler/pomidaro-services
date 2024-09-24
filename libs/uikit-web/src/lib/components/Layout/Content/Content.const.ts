@@ -24,6 +24,6 @@ export const CONTENT_COLORS: LayoutCSSColorVariables = {
     fill: 'linear-gradient(296.99deg, #C04D95 0.91%, #754388 50.43%, #253573 99.12%)',
   },
   [Palette.Grey]: {
-    fill: 'linear-gradient(296.89deg, #192C4D 0.89%, #344563 50.32%, #485872 98.92%),',
+    fill: 'linear-gradient(296.89deg, #192C4D 0.89%, #344563 50.32%, #485872 98.92%)',
   },
 };

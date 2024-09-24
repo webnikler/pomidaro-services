@@ -8,26 +8,40 @@ import { type LayoutPresentationProps } from './Layout.types';
 
 const LayoutPresentation: React.FC<LayoutPresentationProps> = ({
   isShowHeader,
-  isShowSidebar,
-  isShowSidebarHeader,
+  leftSidebarWidth,
+  rightSidebarWidth,
+  isShowLeftSidebar,
+  isShowLeftSidebarHeader,
+  isShowRightSidebar,
+  isShowRightSidebarHeader,
   isShowContentHeader,
   isShowLayoutContentGrid,
   responsive,
   palette,
   isDark,
 }) => {
-  const sidebarHeader = isShowSidebarHeader && <Sidebar.Header />;
-  const contentHeader = isShowContentHeader && <Content.Header />;
-  const header = isShowHeader && <Layout.Header />;
-
   return (
     <ThemeProvider palette={palette} isDark={isDark}>
-      <Layout header={header}>
-        {isShowSidebar && <Sidebar left header={sidebarHeader} />}
-        <Content responsive={responsive} header={contentHeader}>
-          { isShowLayoutContentGrid && <GridPresentation /> }
+      <Layout header={
+        isShowHeader && <Layout.Header />
+      }>
+        {
+          isShowLeftSidebar && <Sidebar.Left width={leftSidebarWidth} header={
+            isShowLeftSidebarHeader && <Sidebar.Header />
+          } />
+        }
+        <Content responsive={responsive} header={
+          isShowContentHeader && <Content.Header />
+        }>
+          {
+            isShowLayoutContentGrid && <GridPresentation />
+          }
         </Content>
-        {isShowSidebar && <Sidebar right header={sidebarHeader} />}
+        {
+          isShowRightSidebar && <Sidebar.Right width={rightSidebarWidth} header={
+            isShowRightSidebarHeader && <Sidebar.Header />
+          } />
+        }
       </Layout>
     </ThemeProvider>
   );
@@ -54,7 +68,7 @@ export const Base: Story = {
       control: 'select',
     },
     isDark: {
-      name: 'Включить темную тему'
+      name: 'Включить темную тему',
     },
     responsive: {
       name: 'Не ограничивать по ширине',
@@ -63,16 +77,38 @@ export const Base: Story = {
       name: 'Показывать сетку',
     },
     isShowHeader: {
-      name: 'Показывать основную шапку'
+      name: 'Показывать основную шапку',
     },
-    isShowSidebar: {
-      name: 'Показывать боковое меню'
+    leftSidebarWidth: {
+      name: 'Ширина левого сайдбара',
+      control: {
+        type: 'range',
+        min: 200,
+        max: 320,
+      },
     },
-    isShowSidebarHeader: {
-      name: 'Показывать шапку бокового меню'
+    rightSidebarWidth: {
+      name: 'Ширина правого сайдбара',
+      control: {
+        type: 'range',
+        min: 200,
+        max: 320,
+      },
+    },
+    isShowLeftSidebar: {
+      name: 'Показывать левое боковое меню',
+    },
+    isShowLeftSidebarHeader: {
+      name: 'Показывать шапку левого бокового меню',
+    },
+    isShowRightSidebar: {
+      name: 'Показывать правое боковое меню',
+    },
+    isShowRightSidebarHeader: {
+      name: 'Показывать шапку правого бокового меню',
     },
     isShowContentHeader: {
-      name: 'Показывать шапку контентной зоны'
+      name: 'Показывать шапку контентной зоны',
     },
   },
   args: {
@@ -81,8 +117,12 @@ export const Base: Story = {
     isShowLayoutContentGrid: true,
     responsive: false,
     isShowHeader: true,
-    isShowSidebar: true,
-    isShowSidebarHeader: true,
+    leftSidebarWidth: 320,
+    rightSidebarWidth: 200,
+    isShowLeftSidebar: true,
+    isShowLeftSidebarHeader: true,
+    isShowRightSidebar: true,
+    isShowRightSidebarHeader: true,
     isShowContentHeader: true,
   },
 };
