@@ -12,8 +12,7 @@ const ThemeContext = React.createContext({
   palette: DEFAULT_PALETTE,
   isDark: DEFAULT_IS_DARK,
   setPalette: (_: Palette) => error(),
-  setDark: () => error(),
-  setLight: () => error(),
+  setDark: (_: boolean) => error(),
   toggleDark: () => error(),
 });
 
@@ -23,13 +22,14 @@ const ThemeProvider = ({
   isDark = DEFAULT_IS_DARK,
 }: ThemeProviderProps) => {
   const [_palette, setPalette] = useState(DEFAULT_PALETTE);
-  const [_isDark, _setDark] = useState(DEFAULT_IS_DARK);
-  const setDark = useCallback(() => _setDark(true), [_setDark]);
-  const setLight = useCallback(() => _setDark(false), [_setDark]);
-  const toggleDark = useCallback(() => _setDark(!_isDark), [_isDark, _setDark]);
+  const [_isDark, setDark] = useState(DEFAULT_IS_DARK);
+  const toggleDark = useCallback(() => setDark(!_isDark), [
+    _isDark,
+    setDark,
+  ]);
 
   useEffect(() => { setPalette(palette) }, [palette]);
-  useEffect(() => _setDark(isDark), [isDark]);
+  useEffect(() => setDark(isDark), [isDark]);
 
   return (
     <ThemeContext.Provider value={{
@@ -37,7 +37,6 @@ const ThemeProvider = ({
       isDark: _isDark,
       setPalette,
       setDark,
-      setLight,
       toggleDark,
     }}>
       {children}
