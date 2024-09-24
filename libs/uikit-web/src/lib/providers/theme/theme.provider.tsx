@@ -28,7 +28,7 @@ const ThemeProvider = ({
     setDark,
   ]);
 
-  useEffect(() => { setPalette(palette) }, [palette]);
+  useEffect(() => setPalette(palette), [palette]);
   useEffect(() => setDark(isDark), [isDark]);
 
   return (
