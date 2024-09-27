@@ -1,184 +1,128 @@
-import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { Layout, Content, Sidebar } from '.';
-import { GridPresentation } from '@components/Grid/Grid.presentation';
-import { Palette } from '@shared/common/constants';
-import { ThemeProvider } from '@providers/theme';
-import { type LayoutPresentationProps } from './Layout.types';
+import { Layout } from './Layout';
+import { Sidebar } from './Sidebar/Sidebar';
+import { Content } from './Content/Content';
+import { useMediaQuery } from '@react-hook/media-query';
+import Grid from '@components/Grid';
+import type { ContentProps } from './Layout.types';
+import { BREAKPOINT_LG_END, BREAKPOINT_MD_END, BREAKPOINTS } from '@shared/features/breakpoints';
 
-const LayoutPresentation: React.FC<LayoutPresentationProps> = (p) => {
+const LayoutGrid = () => {
+  const isXs = useMediaQuery(BREAKPOINTS.xs);
+  const isSm = useMediaQuery(BREAKPOINTS.sm);
+  const length = isXs ? 4 : isSm ? 8 : 12;
+
   return (
-    <ThemeProvider palette={p.palette} isDark={p.isDark}>
-      <Layout header={p.isShowHeader && <Layout.Header />}>
-        {
-          p.isShowLeftSidebar &&
-            <Sidebar.Left
-              header={p.isShowLeftSidebarHeader && <Sidebar.Header />}
-              hidden={p.isLeftSidebarHidden}
-              fixed={p.isLeftSidebarFixed}
-              width={p.leftSidebarWidth}
-            />
-        }
-        <Content
-          responsive={p.responsive}
-          header={p.isShowContentHeader && <Content.Header />}
-        >
-          {p.isShowLayoutContentGrid && <GridPresentation />}
-        </Content>
-        {
-          p.isShowRightSidebar &&
-            <Sidebar.Right
-              header={p.isShowRightSidebarHeader && <Sidebar.Header />}
-              hidden={p.isRightSidebarHidden}
-              fixed={p.isRightSidebarFixed}
-              width={p.rightSidebarWidth}
-            />
-        }
-      </Layout>
-    </ThemeProvider>
+    <Grid columns={{ xs: 4, sm: 8, md: 12 }} style={{ height: '100%' }}>
+      {Array.from({ length }).map((_, i) => (
+        <Grid.Item size={1} key={i} style={{ background: 'rgba(184,184,184,.4)' }} />
+      ))}
+    </Grid>
   );
 };
 
-const meta: Meta<LayoutPresentationProps> = {
+const meta: Meta = {
+  title: 'Design system/Components/Layout',
   component: Layout,
   parameters: {
     layout: 'fullscreen',
   },
-  render: props => <LayoutPresentation {...props} />,
-};
-
-export default meta;
-
-type Story = StoryObj<LayoutPresentationProps>;
-
-export const Base: Story = {
-  name: 'Layout',
   argTypes: {
-    palette: {
-      options: Object.values(Palette),
-      name: 'Палитра',
-      control: 'select',
-      table: {
-        category: 'Темизация',
-      },
-    },
-    isDark: {
-      name: 'Включить темную тему',
-      table: {
-        category: 'Темизация',
-      },
-    },
     responsive: {
       name: 'Не ограничивать по ширине',
       table: {
         category: 'Настройки контентной зоны',
       },
     },
-    isShowLayoutContentGrid: {
-      name: 'Показать сетку',
-      table: {
-        category: 'Настройки контентной зоны',
-      },
-    },
-    isShowHeader: {
-      name: 'Включить шапку',
-      table: {
-        category: 'Настройки лейаута',
-      },
-    },
-    leftSidebarWidth: {
-      name: 'Ширина сайдбара',
-      control: {
-        type: 'range',
-        min: 200,
-        max: 320,
-      },
-      table: {
-        category: 'Настройки левого сайдбара',
-      },
-    },
-    rightSidebarWidth: {
-      name: 'Ширина сайдбара',
-      control: {
-        type: 'range',
-        min: 200,
-        max: 320,
-      },
-      table: {
-        category: 'Настройки правого сайдбара',
-      },
-    },
-    isLeftSidebarFixed: {
-      name: 'Сайдбар откреплен от лейаута',
-      table: {
-        category: 'Настройки левого сайдбара',
-      },
-    },
-    isRightSidebarFixed: {
-      name: 'Сайдбар откреплен от лейаута',
-      table: {
-        category: 'Настройки правого сайдбара',
-      },
-    },
-    isLeftSidebarHidden: {
-      name: 'Сайдбар свернут (должен быть откреплен)',
-      table: {
-        category: 'Настройки левого сайдбара',
-      },
-    },
-    isRightSidebarHidden: {
-      name: 'Сайдбар свернут (должен быть откреплен)',
-      table: {
-        category: 'Настройки правого сайдбара',
-      },
-    },
-    isShowLeftSidebar: {
-      name: 'Включить сайдбар',
-      table: {
-        category: 'Настройки левого сайдбара',
-      },
-    },
-    isShowLeftSidebarHeader: {
-      name: 'Включить шапку',
-      table: {
-        category: 'Настройки левого сайдбара',
-      },
-    },
-    isShowRightSidebar: {
-      name: 'Включить сайдбар',
-      table: {
-        category: 'Настройки правого сайдбара',
-      },
-    },
-    isShowRightSidebarHeader: {
-      name: 'Включить шапку',
-      table: {
-        category: 'Настройки правого сайдбара',
-      },
-    },
-    isShowContentHeader: {
-      name: 'Включить шапку',
-      table: {
-        category: 'Настройки контентной зоны',
-      }
-    },
   },
   args: {
-    palette: Palette.LightBlue,
-    isDark: false,
-    isShowLayoutContentGrid: true,
     responsive: false,
-    isShowHeader: true,
-    leftSidebarWidth: 320,
-    rightSidebarWidth: 200,
-    isLeftSidebarFixed: false,
-    isRightSidebarFixed: false,
-    isLeftSidebarHidden: false,
-    isRightSidebarHidden: false,
-    isShowLeftSidebar: true,
-    isShowLeftSidebarHeader: true,
-    isShowRightSidebar: true,
-    isShowRightSidebarHeader: true,
-    isShowContentHeader: true,
   },
 };
+
+export default meta;
+
+type Story = StoryObj;
+
+export const SidebarOnlyLeft: Story = {
+  name: 'Только левый сайдбар',
+  render: ({ responsive }: ContentProps) => {
+    return (
+      <Layout header={<Layout.Header />}>
+        <Sidebar.Left fixedOnBreakpoint={BREAKPOINT_MD_END} header={<Sidebar.Header />} />
+        <Content responsive={responsive} header={<Content.Header />}>
+          <LayoutGrid />
+        </Content>
+      </Layout>
+    );
+  },
+};
+
+export const SidebarOnlyRight: Story = {
+  name: 'Только правый сайдбар',
+  render: ({ responsive }: ContentProps) => {
+    return (
+      <Layout header={<Layout.Header />}>
+        <Sidebar.Right fixedOnBreakpoint={BREAKPOINT_MD_END} header={<Sidebar.Header />} />
+        <Content responsive={responsive} header={<Content.Header />}>
+          <LayoutGrid />
+        </Content>
+      </Layout>
+    );
+  },
+};
+
+export const SidebarsDuo: Story = {
+  name: 'Левый и правый сайдбар',
+  render: ({ responsive }: ContentProps) => {
+    return (
+      <Layout header={<Layout.Header />}>
+        <Sidebar.Left fixedOnBreakpoint={BREAKPOINT_MD_END} header={<Sidebar.Header />} />
+        <Content responsive={responsive} header={<Content.Header />}>
+          <LayoutGrid />
+        </Content>
+        <Sidebar.Right fixedOnBreakpoint={BREAKPOINT_LG_END} header={<Sidebar.Header />} />
+      </Layout>
+    );
+  },
+};
+
+export const SidebarsNone: Story = {
+  name: 'Без сайдбаров',
+  render: ({ responsive }: ContentProps) => {
+    return (
+      <Layout header={<Layout.Header />}>
+        <Content responsive={responsive} header={<Content.Header />}>
+          <LayoutGrid />
+        </Content>
+      </Layout>
+    );
+  },
+};
+
+export const OnlyHeader: Story = {
+  name: 'Только шапка',
+  render: ({ responsive }: ContentProps) => {
+    return (
+      <Layout header={<Layout.Header />}>
+        <Content responsive={responsive}>
+          <LayoutGrid />
+        </Content>
+      </Layout>
+    );
+  },
+};
+
+export const Emprty: Story = {
+  name: 'Пустой',
+  render: ({ responsive }: ContentProps) => {
+    return (
+      <Layout>
+        <Content responsive={responsive}>
+          <LayoutGrid />
+        </Content>
+      </Layout>
+    );
+  },
+};
+

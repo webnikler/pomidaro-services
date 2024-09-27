@@ -1,31 +1,13 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Palette } from '@shared/common/constants';
-import type { ThemeProviderProps } from './theme.types';
+import type { PropsChildren } from '@shared/common/types';
+import type { ThemeContextValue } from './theme.types';
 
-const PROVIDER_NOT_FOUND = 'ThemeProvider is not found!';
-const error: () => void = () => {throw Error(PROVIDER_NOT_FOUND)};
+const ThemeContext = React.createContext<ThemeContextValue|undefined>(undefined);
 
-const DEFAULT_PALETTE = Palette.LightBlue;
-const DEFAULT_IS_DARK = false;
-
-const ThemeContext = React.createContext({
-  palette: DEFAULT_PALETTE,
-  isDark: DEFAULT_IS_DARK,
-  setPalette: (_: Palette) => error(),
-  setDark: (_: boolean) => error(),
-});
-
-const ThemeProvider = ({
-  children,
-  palette: _palette = DEFAULT_PALETTE,
-  isDark: _isDark = DEFAULT_IS_DARK,
-}: ThemeProviderProps) => {
-  const [palette, setPalette] = useState(DEFAULT_PALETTE);
-  // for toggle use setDark(v => !v)
-  const [isDark, setDark] = useState(DEFAULT_IS_DARK);
-
-  useEffect(() => setPalette(_palette), [_palette]);
-  useEffect(() => setDark(_isDark), [_isDark]);
+const ThemeProvider = ({ children }: PropsChildren) => {
+  const [palette, setPalette] = useState(Palette.LightBlue);
+  const [isDark, setDark] = useState(false);
 
   return (
     <ThemeContext.Provider value={{
@@ -39,6 +21,14 @@ const ThemeProvider = ({
   );
 };
 
-const useTheme = () => useContext(ThemeContext);
+const useTheme = () => {
+  const context = useContext(ThemeContext);
+
+  if (context === undefined) {
+    throw new Error('ThemeProvider is not found!');
+  }
+
+  return context;
+}
 
 export { ThemeProvider, useTheme };

@@ -1,7 +1,6 @@
-import React, { ReactElement, ComponentProps } from 'react';
+import React, { ReactElement } from 'react';
 import type { PropsChildren, PropsHTMLAttributes } from '@shared/common/types';
 import { Palette } from '@shared/common/constants';
-import { MediaQueryProp } from '@shared/features/media-query';
 
 type PropsHeader = {
   header?: ReactElement | null | false;
@@ -9,14 +8,17 @@ type PropsHeader = {
 
 type LayoutProps = PropsHeader & PropsChildren & PropsHTMLAttributes;
 
-export type SidebarProps = PropsHeader & PropsChildren & PropsHTMLAttributes & {
-  placement?: 'left' | 'right';
-  width?: MediaQueryProp<number>;
-  fixed?: boolean;
-  hidden?: boolean;
+export const enum SidebarPlacement {
+  right = 'right',
+  left = 'left',
 }
 
-type ContentProps = PropsHeader & PropsChildren & PropsHTMLAttributes & {
+export type SidebarProps = PropsHeader & PropsChildren & PropsHTMLAttributes & {
+  placement?: SidebarPlacement;
+  fixedOnBreakpoint?: string;
+}
+
+export type ContentProps = PropsHeader & PropsChildren & PropsHTMLAttributes & {
   responsive?: boolean;
 }
 
@@ -42,23 +44,4 @@ export type SidebarComponent = ComponentWithHeader<SidebarProps> & {
 export type LayoutCSSColorVariables = Record<Palette, {
   fill: string;
   stroke?: string;
-}>
-
-export type LayoutPresentationProps = ComponentProps<LayoutComponent> & {
-  isShowHeader: boolean;
-  leftSidebarWidth: number,
-  rightSidebarWidth: number,
-  isLeftSidebarFixed: boolean,
-  isRightSidebarFixed: boolean,
-  isLeftSidebarHidden: boolean,
-  isRightSidebarHidden: boolean,
-  isShowLeftSidebar: boolean;
-  isShowLeftSidebarHeader: boolean;
-  isShowRightSidebar: boolean;
-  isShowRightSidebarHeader: boolean;
-  isShowContentHeader: boolean;
-  isShowLayoutContentGrid: boolean;
-  responsive: boolean;
-  palette: Palette;
-  isDark: boolean;
-}
+}>;

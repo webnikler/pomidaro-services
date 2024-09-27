@@ -1,32 +1,37 @@
 import css from './Sidebar.module.scss';
-import type { SidebarComponent, SidebarHeaderComponent, SidebarProps } from '../Layout.types';
+import { SidebarPlacement, type SidebarComponent, type SidebarHeaderComponent, type SidebarProps } from '../Layout.types';
 import { useTheme } from '@providers/theme/theme.provider';
 import { HEADER_COLORS, SIDEBAR_COLORS } from './Sidebar.const';
 import cn from 'classnames';
-import { useCSSVarsFromMediaQueryProp } from '@shared/features/media-query';
-import { units } from '@shared/common/helpers';
+import { useEffect } from 'react';
+import { useMediaQuery } from '@react-hook/media-query';
+import { BREAKPOINT_XS_END } from '@shared/features/breakpoints';
+import { useSidebar } from './Sidebar.provider';
 
 const Sidebar: SidebarComponent = ({
   header,
   children,
   style,
-  width,
-  fixed = true,
-  hidden = false,
-  placement = 'left',
+  placement = SidebarPlacement.left,
+  fixedOnBreakpoint = BREAKPOINT_XS_END,
 }) => {
   const { palette } = useTheme();
-  const useMediaQueryVars = useCSSVarsFromMediaQueryProp.namespace('sidebar');
+  const { hidden, setHidden, setFixed } = useSidebar(placement);
+  const fixed = useMediaQuery(fixedOnBreakpoint);
+
+  useEffect(() => {
+    fixed && setHidden(true);
+    setFixed(fixed);
+  }, [fixed, setHidden, setFixed]);
+
   const className = cn(css.Sidebar, css[placement], {
     [css.fixed]: fixed,
     [css.hidden]: hidden,
   });
-  
 
   const styles = {
     '--sidebar-fill': SIDEBAR_COLORS[palette].fill,
     '--sidebar-stroke': SIDEBAR_COLORS[palette].stroke,
-    ...useMediaQueryVars('width', width, units.px),
     ...style,
   } as React.CSSProperties;
 
@@ -54,8 +59,8 @@ const Header: SidebarHeaderComponent = ({ children, style }) => {
   );
 };
 
-const Left = (props: SidebarProps) => <Sidebar {...props} placement='left' />;
-const Right = (props: SidebarProps) => <Sidebar {...props} placement='right' />;
+const Left = (props: SidebarProps) => <Sidebar {...props} placement={SidebarPlacement.left} />;
+const Right = (props: SidebarProps) => <Sidebar {...props} placement={SidebarPlacement.right} />;
 
 Sidebar.Header = Header;
 Sidebar.Left = Left;

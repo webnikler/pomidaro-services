@@ -1,4 +1,4 @@
-export const enum MediaQuery {
+export const enum Breakpoints {
   xs = 'xs',
   sm = 'sm',
   md = 'md',

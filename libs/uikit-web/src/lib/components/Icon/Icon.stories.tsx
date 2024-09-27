@@ -8,7 +8,7 @@ type StoryArgs = {
 };
 
 const meta: Meta<StoryArgs> = {
-  title: 'components/Icons',
+  title: 'Design system/Components/Icon',
   render: (props) => (
     <Grid columns={12}>
       {Object.values(icons).map((Icon, i) => (
@@ -22,7 +22,7 @@ const meta: Meta<StoryArgs> = {
 
 export default meta;
 
-export const Icons: StoryObj<StoryArgs> = {
+export const Icon: StoryObj<StoryArgs> = {
   argTypes: {
     fill: {
       name: 'Цвет',

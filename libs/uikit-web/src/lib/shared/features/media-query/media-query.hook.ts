@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import { MediaQuery } from './media-query.enum';
 import type { CSSVariableValueTransformer, MediaQueryProp, MediaQueryTypes } from './media-query.type';
 
-const parseNumber = <T>(prop: T): MediaQueryTypes<T> => ({
+const parsePrimitive = <T>(prop: T): MediaQueryTypes<T> => ({
   [MediaQuery.xs]: prop,
   [MediaQuery.sm]: prop,
   [MediaQuery.md]: prop,
@@ -20,7 +20,7 @@ const parseObject = <T>({ xs, sm, md, lg, xl }: MediaQueryTypes<T>): MediaQueryT
 
 const normalizeProp = <T>(prop: MediaQueryProp<T>): MediaQueryTypes<T> => {
   switch (typeof prop) {
-    case 'number': return parseNumber(prop);
+    case 'number': case 'boolean': case 'string': return parsePrimitive(prop);
     case 'object': return prop ? parseObject(prop) : {};
     default: return {};
   }

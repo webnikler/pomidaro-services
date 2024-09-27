@@ -2,13 +2,16 @@ import css from './Layout.module.scss';
 import type { LayoutComponent, LayoutHeaderComponent } from './Layout.types';
 import { useTheme } from '@providers/theme/theme.provider';
 import { HEADER_COLORS } from './Layout.const';
+import { SidebarProvider } from './Sidebar/Sidebar.provider';
 
 const Layout: LayoutComponent = ({ children, header }) => {
   return (
-    <main className={css.Layout}>
-      {header}
-      {children}
-    </main>
+    <SidebarProvider>
+      <main className={css.Layout}>
+        {header}
+        {children}
+      </main>
+    </SidebarProvider>
   );
 };
 
