@@ -23,7 +23,7 @@ export type ContentProps = PropsHeader & PropsChildren & PropsHTMLAttributes & {
 }
 
 type ComponentWithHeader<P> = React.FC<P> & {
-  Header: React.FC<PropsChildren>;
+  Header: React.FC<PropsChildren & PropsHTMLAttributes>;
 }
 
 type LayoutHeaderProps = PropsChildren & PropsHTMLAttributes;

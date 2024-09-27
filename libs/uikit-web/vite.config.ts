@@ -15,8 +15,8 @@ export default defineConfig({
     svgr({
       svgrOptions: {
         svgProps: {
-          width: '{props.size}',
-          height: '{props.size}',
+          width: '{props.size || 24}',
+          height: '{props.size || 24}',
         }
       },
     }),

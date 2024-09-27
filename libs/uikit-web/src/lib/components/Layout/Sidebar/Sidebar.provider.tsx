@@ -7,7 +7,7 @@ const LeftSidebarContext = React.createContext<SidebarContextValue|undefined>(un
 const RightSidebarContext = React.createContext<SidebarContextValue|undefined>(undefined);
 
 const useSidebarProviderState = () => {
-  const [ hidden, setHidden ] = useState(false);
+  const [ hidden, setHidden ] = useState(true);
   const [ fixed, setFixed ] = useState(false);
 
   return { hidden, setHidden, fixed, setFixed };

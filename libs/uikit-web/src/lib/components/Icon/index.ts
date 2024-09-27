@@ -9,3 +9,5 @@ export { default as IconPlayArrow } from '../../../assets/icons/PlayArrow.svg?re
 export { default as IconPlayCircle } from '../../../assets/icons/PlayCircle.svg?react';
 export { default as IconStop } from '../../../assets/icons/Stop.svg?react';
 export { default as IconStopCircle } from '../../../assets/icons/StopCircle.svg?react';
+export { default as IconArrowBack } from '../../../assets/icons/ArrowBack.svg?react';
+export { default as IconArrowForward } from '../../../assets/icons/ArrowForward.svg?react';
