@@ -16,7 +16,10 @@ export const Button: ButtonComponent = ({
     css[color || palette],
     css[size],
     css[type],
-  ]);
+  ], {
+    [css.rectangular]: children,
+    [css.round]: !children,
+  });
 
   return (
     <button disabled={disabled} className={className}>

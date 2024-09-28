@@ -1,4 +1,4 @@
-$sizes: (
+$rectangleSizes: (
   sm: (
     border-radius: 4px,
     line-height: 16px,
@@ -17,6 +17,30 @@ $sizes: (
     border-radius: 4px,
     line-height: 16px,
     padding: 6px 8px,
+    font-weight: 500,
+    font-size: 14px,
+  ),
+);
+
+$circleSizes: (
+  sm: (
+    border-radius: 50%,
+    line-height: 16px,
+    padding: 6px,
+    font-weight: 500,
+    font-size: 14px,
+  ),
+  md: (
+    border-radius: 50%,
+    line-height: 16px,
+    padding: 6px,
+    font-weight: 500,
+    font-size: 14px,
+  ),
+  lg: (
+    border-radius: 50%,
+    line-height: 16px,
+    padding: 6px,
     font-weight: 500,
     font-size: 14px,
   ),

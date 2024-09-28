@@ -76,8 +76,8 @@ $darkColor: #172B4D;
   }
 }
 
-@mixin initSizes {
-  @each $size, $properties in sizes.$sizes {
+@mixin initSizes($sizes) {
+  @each $size, $properties in $sizes {
     &.#{$size} {
       @each $property, $value in $properties {
         #{$property}: $value;
@@ -88,7 +88,7 @@ $darkColor: #172B4D;
 
 @mixin initColors {
   @each $color, $values in colors.$colors {
-    &.#{$color} {
+    &.#{'' + $color} {
       @include initPrimary(map-get($values, primary));
       @include initSecondary(map-get($values, secondary));
     }
@@ -98,7 +98,6 @@ $darkColor: #172B4D;
 .Button {
   font-family: $defaultFont;
 
-  @include initSizes;
   @include initDefault;
   @include initColors;
 
@@ -111,6 +110,14 @@ $darkColor: #172B4D;
   box-shadow: $defaultShadow;
   cursor: pointer;
 
+  &.rectangular {
+    @include initSizes(sizes.$rectangleSizes);
+  }
+
+  &.round {
+    @include initSizes(sizes.$circleSizes);
+  }
+
   &[disabled] {
     box-shadow: none;
     cursor: default;
@@ -118,5 +125,9 @@ $darkColor: #172B4D;
 
   & > .content {
     padding: 4px 6px;
+
+    &:empty {
+      display: none;
+    }
   }
 }
