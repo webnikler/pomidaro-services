@@ -41,8 +41,6 @@
 }
 
 .Grid {
-  color-scheme: light only !important;
-
   display: grid;
 
   @include useMargins;

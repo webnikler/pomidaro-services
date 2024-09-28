@@ -1,10 +1,9 @@
 @use 'sass:map';
 @use '../../shared/features/media-query/media-query.scss' as mediaQuery;
+@use '../../shared/common/styles/native-dark-mode.scss' as darkMode;
 @use './grid.scss' as grid;
 
 .Layout {
-  color-scheme: light only !important;
-
   width: 100vw;
   height: 100vh;
   position: relative;
@@ -13,11 +12,14 @@
   @include grid.root;
 
   & .Header {
-    @include grid.header;
-
-    background: var(--layout-header-fill, #333) !important;
-    border: 1px solid var(--layout-header-stroke, #333) !important;
     box-sizing: border-box;
     height: 54px;
+
+    @include grid.header;
+
+    @include darkMode.fix {
+      background: var(--layout-header-fill, #333) !important;
+      border: 1px solid var(--layout-header-stroke, #333) !important;
+    }
   }
 }

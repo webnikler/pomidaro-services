@@ -1,0 +1,7 @@
+@mixin fix {
+  @content;
+
+  @media (prefers-color-scheme: dark) {
+    @content;
+  }
+}
