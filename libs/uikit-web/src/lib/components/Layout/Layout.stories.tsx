@@ -8,6 +8,8 @@ import { SidebarPlacement, type ContentProps } from './Layout.types';
 import { BREAKPOINT_LG_END, BREAKPOINT_MD_END, BREAKPOINTS } from '@shared/features/breakpoints';
 import { SidebarProvider, useSidebar } from './Sidebar/Sidebar.provider';
 import { IconArrowBack, IconArrowForward } from '@components/Icon';
+import { Button } from '@components/Button/Button';
+import { ButtonType } from '@components/Button/Button.types';
 
 const LayoutGrid = () => {
   const isXs = useMediaQuery(BREAKPOINTS.xs);
@@ -32,21 +34,23 @@ const LayoutGrid = () => {
 
 const SidebarController = ({ placement = SidebarPlacement.left }) => {
   const { hidden, fixed, setHidden } = useSidebar(placement);
+  const toLeft = <Button type={ButtonType.secondary} icon={<IconArrowBack />} />;
+  const toRight = <Button type={ButtonType.secondary} icon={<IconArrowForward />} />;
 
   return (
     fixed &&
       <div
-        style={{ float: placement, padding: '14px' }}
+        style={{ float: placement, padding: '9px' }}
         onClick={() => setHidden(h => !h)}
       >
         {
           placement === SidebarPlacement.left
             ? hidden
-              ? <IconArrowForward />
-              : <IconArrowBack />
+              ? toRight
+              : toLeft
             : hidden
-              ? <IconArrowBack />
-              : <IconArrowForward />
+              ? toLeft
+              : toRight
         }
       </div>
   );
