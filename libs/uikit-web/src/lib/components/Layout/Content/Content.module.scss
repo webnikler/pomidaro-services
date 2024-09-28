@@ -1,6 +1,8 @@
 @use '../grid' as grid;
 
 .Content {
+  color-scheme: light only !important;
+
   display: flex;
   flex-direction: column;
   align-items: center;

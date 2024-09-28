@@ -70,6 +70,8 @@ $darkColor: #172B4D;
 }
 
 .Button {
+  color-scheme: light only !important;
+
   font-family: $defaultFont;
 
   @include initDefault;

@@ -1,6 +1,8 @@
 @use '../grid' as grid;
 
 .Sidebar {
+  color-scheme: light only !important;
+
   background: var(--sidebar-fill, #333) !important;
   border: 1px solid var(--sidebar-stroke, #333) !important;
   box-sizing: border-box;
