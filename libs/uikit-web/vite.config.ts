@@ -17,6 +17,7 @@ export default defineConfig({
         svgProps: {
           width: '{props.size || 24}',
           height: '{props.size || 24}',
+          fill: '{props.color || "currentColor"}'
         }
       },
     }),

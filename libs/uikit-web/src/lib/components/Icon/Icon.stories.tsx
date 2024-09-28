@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import Grid from '@components/Grid';
+import { Grid } from '@components/Grid';
 import * as icons from '.';
 
 type StoryArgs = {

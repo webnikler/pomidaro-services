@@ -29,6 +29,7 @@ const preview: Preview = {
     },
     $isDark: {
       name: 'Включить темную тему',
+      control: 'boolean',
       table: {
         category: 'Темизация',
       },

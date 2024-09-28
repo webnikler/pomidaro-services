@@ -52,5 +52,3 @@ const Item: GridItemComponent = ({ children, size, style, ...props }) => {
 };
 
 Grid.Item = Item;
-
-export default Grid;

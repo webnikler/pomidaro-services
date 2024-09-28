@@ -3,7 +3,7 @@ import { Layout } from './Layout';
 import { Sidebar } from './Sidebar/Sidebar';
 import { Content } from './Content/Content';
 import { useMediaQuery } from '@react-hook/media-query';
-import Grid from '@components/Grid';
+import { Grid } from '@components/Grid';
 import { SidebarPlacement, type ContentProps } from './Layout.types';
 import { BREAKPOINT_LG_END, BREAKPOINT_MD_END, BREAKPOINTS } from '@shared/features/breakpoints';
 import { SidebarProvider, useSidebar } from './Sidebar/Sidebar.provider';

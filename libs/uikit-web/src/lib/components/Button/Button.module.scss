@@ -1,0 +1,122 @@
+@use 'sass:color';
+@use 'sass:map';
+@use './Button.sizes.scss' as sizes;
+@use './Button.colors.scss' as colors;
+
+$defaultBackground: #DCDFE4;
+$defaultColor: #172B4D;
+$defaultDisabledBackground: #D4D5D7;
+$defaultDisabledColor: #9D9E9F;
+$defaultFont: 'Noto Sans', 'Roboto', sans-serif;
+$defaultShadow: 0px 1px 2px rgba(0, 0, 0, 0.3), 0px 1px 1px rgba(0, 0, 0, 0.15);
+$lightColor: #F7F7F7;
+$darkColor: #172B4D;
+
+@mixin initPrimary($baseColor) {
+  &.primary {
+    background-color: $baseColor;
+    color: $lightColor;
+    
+    &:focus {
+      background-color: color.scale($baseColor, $lightness: 4%);
+    }
+    &:hover {
+      background-color: color.scale($baseColor, $lightness: 8%);
+    }
+    &:active {
+      background-color: color.scale($baseColor, $lightness: 12%);
+    }
+    &[disabled] {
+      background-color: $defaultDisabledBackground;
+      color: $defaultDisabledColor;
+    }
+  }
+}
+
+@mixin initSecondary($baseColor) {
+  &.secondary {
+    background-color: $baseColor;
+    color: $darkColor;
+    
+    &:focus {
+      background-color: color.scale($baseColor, $lightness: -5%);
+    }
+    &:hover {
+      background-color: color.scale($baseColor, $lightness: -10%);
+    }
+    &:active {
+      background-color: color.scale($baseColor, $lightness: -15%);
+    }
+    &[disabled] {
+      background-color: $defaultDisabledBackground;
+      color: $defaultDisabledColor;
+    }
+  }
+}
+
+@mixin initDefault {
+  background-color: $defaultBackground;
+  color: $defaultColor;
+
+  &:focus {
+    background-color: color.scale($defaultBackground, $lightness: -5%);
+  }
+
+  &:hover {
+    background-color: color.scale($defaultBackground, $lightness: -10%);;
+  }
+
+  &:active {
+    background-color: color.scale($defaultBackground, $lightness: -15%);;
+  }
+
+  &[disabled] {
+    background-color: $defaultDisabledBackground;
+    color: $defaultDisabledColor;
+  }
+}
+
+@mixin initSizes {
+  @each $size, $properties in sizes.$sizes {
+    &.#{$size} {
+      @each $property, $value in $properties {
+        #{$property}: $value;
+      }
+    }
+  }
+}
+
+@mixin initColors {
+  @each $color, $values in colors.$colors {
+    &.#{$color} {
+      @include initPrimary(map-get($values, primary));
+      @include initSecondary(map-get($values, secondary));
+    }
+  }
+}
+
+.Button {
+  font-family: $defaultFont;
+
+  @include initSizes;
+  @include initDefault;
+  @include initColors;
+
+  display: inline-flex;
+  outline: none;
+  border: none;
+  position: relative;
+  overflow: hidden;
+  transition: background-color .15s;
+  box-shadow: $defaultShadow;
+  cursor: pointer;
+
+  &[disabled] {
+    box-shadow: none;
+    cursor: default;
+  }
+
+  & > .content {
+    padding: 4px 6px;
+  }
+}
