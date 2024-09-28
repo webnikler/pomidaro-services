@@ -13,8 +13,9 @@
   & .Header {
     @include grid.header;
 
-    background: var(--layout-header-fill, #333);
-    border: 1px solid var(--layout-header-stroke, #333);
+    background: var(--layout-header-fill, #333) !important;
+    border: 1px solid var(--layout-header-stroke, #333) !important;
+    box-sizing: border-box;
     height: 54px;
   }
 }

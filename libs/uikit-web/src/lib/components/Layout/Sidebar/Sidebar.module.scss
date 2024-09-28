@@ -1,8 +1,8 @@
 @use '../grid' as grid;
 
 .Sidebar {
-  background: var(--sidebar-fill, #333);
-  border: 1px solid var(--sidebar-stroke, #333);
+  background: var(--sidebar-fill, #333) !important;
+  border: 1px solid var(--sidebar-stroke, #333) !important;
   box-sizing: border-box;
   width: 320px;
   height: 100%;
@@ -35,8 +35,8 @@
   }
 
   .Header {
-    background: var(--sidebar-header-fill, #333);
-    border-bottom: 1px solid var(--sidebar-header-stroke, #333);
+    background: var(--sidebar-header-fill, #333) !important;
+    border-bottom: 1px solid var(--sidebar-header-stroke, #333) !important;
     box-sizing: border-box;
     height: 62px;
   }

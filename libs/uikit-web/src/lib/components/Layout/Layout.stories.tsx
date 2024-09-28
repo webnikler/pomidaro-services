@@ -40,7 +40,7 @@ const SidebarController = ({ placement = SidebarPlacement.left }) => {
   return (
     fixed &&
       <div
-        style={{ float: placement, padding: '9px' }}
+        style={{ float: placement, padding: '8px' }}
         onClick={() => setHidden(h => !h)}
       >
         {

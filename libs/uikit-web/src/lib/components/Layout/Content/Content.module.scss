@@ -4,7 +4,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: var(--content-fill, #333);
+  background: var(--content-fill, #333) !important;
 
   @include grid.content;
 
@@ -19,7 +19,7 @@
   }
 
   .Header {
-    background: rgba(#1D1D1D, .15);
+    background: rgba(#1D1D1D, .15) !important;
     height: 62px;
     width: 100%;
     flex-shrink: 0;

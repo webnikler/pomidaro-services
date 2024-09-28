@@ -12,68 +12,42 @@ $defaultShadow: 0px 1px 2px rgba(0, 0, 0, 0.3), 0px 1px 1px rgba(0, 0, 0, 0.15);
 $lightColor: #F7F7F7;
 $darkColor: #172B4D;
 
+@mixin initTheme($color, $background, $step: 4%) {
+  background-color: $background !important;
+  color: $color !important;
+
+  &:focus {
+    background-color: color.scale($background, $lightness: $step) !important;
+  }
+
+  &:hover {
+    background-color: color.scale($background, $lightness: $step * 2) !important;
+  }
+
+  &:active {
+    background-color: color.scale($background, $lightness: $step * 3) !important;
+  }
+
+  &[disabled] {
+    background-color: $defaultDisabledBackground !important;
+    color: $defaultDisabledColor !important;
+  }
+}
+
 @mixin initPrimary($baseColor) {
   &.primary {
-    background-color: $baseColor;
-    color: $lightColor;
-    
-    &:focus {
-      background-color: color.scale($baseColor, $lightness: 4%);
-    }
-    &:hover {
-      background-color: color.scale($baseColor, $lightness: 8%);
-    }
-    &:active {
-      background-color: color.scale($baseColor, $lightness: 12%);
-    }
-    &[disabled] {
-      background-color: $defaultDisabledBackground;
-      color: $defaultDisabledColor;
-    }
+    @include initTheme($lightColor, $baseColor, 4%);
   }
 }
 
 @mixin initSecondary($baseColor) {
   &.secondary {
-    background-color: $baseColor;
-    color: $darkColor;
-    
-    &:focus {
-      background-color: color.scale($baseColor, $lightness: -5%);
-    }
-    &:hover {
-      background-color: color.scale($baseColor, $lightness: -10%);
-    }
-    &:active {
-      background-color: color.scale($baseColor, $lightness: -15%);
-    }
-    &[disabled] {
-      background-color: $defaultDisabledBackground;
-      color: $defaultDisabledColor;
-    }
+    @include initTheme($darkColor, $baseColor, -4%);
   }
 }
 
 @mixin initDefault {
-  background-color: $defaultBackground;
-  color: $defaultColor;
-
-  &:focus {
-    background-color: color.scale($defaultBackground, $lightness: -5%);
-  }
-
-  &:hover {
-    background-color: color.scale($defaultBackground, $lightness: -10%);;
-  }
-
-  &:active {
-    background-color: color.scale($defaultBackground, $lightness: -15%);;
-  }
-
-  &[disabled] {
-    background-color: $defaultDisabledBackground;
-    color: $defaultDisabledColor;
-  }
+  @include initTheme($defaultColor, $defaultBackground, -4%);
 }
 
 @mixin initSizes($sizes) {
