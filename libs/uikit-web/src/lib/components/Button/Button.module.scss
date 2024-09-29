@@ -2,7 +2,6 @@
 @use 'sass:map';
 @use './Button.sizes.scss' as sizes;
 @use './Button.colors.scss' as colors;
-@use '../../shared/common/styles/native-dark-mode.scss' as darkMode;
 
 $defaultBackground: #DCDFE4;
 $defaultColor: #172B4D;
@@ -14,26 +13,24 @@ $lightColor: #F7F7F7;
 $darkColor: #172B4D;
 
 @mixin initTheme($color, $background, $step: 4%) {
-  @include darkMode.fix {
-    background-color: $background !important;
-    color: $color !important;
-  
-    &:focus {
-      background-color: color.scale($background, $lightness: $step) !important;
-    }
-  
-    &:hover {
-      background-color: color.scale($background, $lightness: $step * 2) !important;
-    }
-  
-    &:active {
-      background-color: color.scale($background, $lightness: $step * 3) !important;
-    }
-  
-    &[disabled] {
-      background-color: $defaultDisabledBackground !important;
-      color: $defaultDisabledColor !important;
-    }
+  background-color: $background;
+  color: $color;
+
+  &:focus {
+    background-color: color.scale($background, $lightness: $step);
+  }
+
+  &:hover {
+    background-color: color.scale($background, $lightness: $step * 2);
+  }
+
+  &:active {
+    background-color: color.scale($background, $lightness: $step * 3);
+  }
+
+  &[disabled] {
+    background-color: $defaultDisabledBackground;
+    color: $defaultDisabledColor;
   }
 }
 
@@ -83,6 +80,8 @@ $darkColor: #172B4D;
   transition: background-color .15s;
   box-shadow: $defaultShadow;
   cursor: pointer;
+
+  -webkit-tap-highlight-color: transparent;
 
   @include initDefault;
   @include initColors;

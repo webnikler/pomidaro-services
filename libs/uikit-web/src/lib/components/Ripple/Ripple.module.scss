@@ -1,5 +1,4 @@
-
-.Ripple {
+.RippleContainer {
   position: absolute;
   top: 0;
   right: 0;
@@ -9,12 +8,12 @@
 
 .item {
   transform: scale(0);
-    border-radius: 100%;
-    position: absolute;
-    opacity: 0.75;
-    background-color: var(--ripple-color);
-    animation-duration: var(--ripple-duration);
-    animation-name: ripple;
+  border-radius: 100%;
+  position: absolute;
+  opacity: 0.75;
+  background-color: var(--ripple-color);
+  animation-duration: var(--ripple-duration);
+  animation-name: ripple;
 }
 
 @keyframes ripple {

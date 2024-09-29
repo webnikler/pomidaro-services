@@ -1,15 +1,12 @@
 @use '../grid' as grid;
-@use '../../../shared/common/styles/native-dark-mode.scss' as darkMode;
 
 .Sidebar {
   box-sizing: border-box;
   width: 320px;
   height: 100%;
 
-  @include darkMode.fix {
-    background: var(--sidebar-fill, #333) !important;
-    border: 1px solid var(--sidebar-stroke, #333) !important;
-  }
+  background: var(--sidebar-fill, #333);
+  border: 1px solid var(--sidebar-stroke, #333);
 
   &.fixed {
     position: absolute;
@@ -42,9 +39,7 @@
     box-sizing: border-box;
     height: 62px;
 
-    @include darkMode.fix {
-      background: var(--sidebar-header-fill, #333) !important;
-      border-bottom: 1px solid var(--sidebar-header-stroke, #333) !important;
-    }
+    background: var(--sidebar-header-fill, #333);
+    border-bottom: 1px solid var(--sidebar-header-stroke, #333);
   }
 }

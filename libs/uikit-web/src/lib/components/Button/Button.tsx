@@ -2,6 +2,7 @@ import cn from 'classnames';
 import { ButtonComponent, ButtonSize, ButtonType } from './Button.types';
 import css from './Button.module.scss';
 import { useTheme } from '@providers/theme/theme.provider';
+import { RippleContainer } from '@components/Ripple/Ripple';
 
 export const Button: ButtonComponent = ({
   children,
@@ -25,6 +26,7 @@ export const Button: ButtonComponent = ({
     <button disabled={disabled} className={className}>
       {icon}
       <span className={css.content}>{children}</span>
+      <RippleContainer duration={1000} />
     </button>
   );
 };

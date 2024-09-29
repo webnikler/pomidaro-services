@@ -1,10 +1,14 @@
 import React from 'react';
 
-type RippleProps = {
+export type RippleItem = {
+  x: number;
+  y: number;
+  size: number;
+}
+
+export type RippleContainerProps = {
   color?: string;
   duration?: number;
 };
 
-type RippleComponent = React.FC<RippleProps>;
-
-export { RippleComponent, RippleProps };
+export type RippleContainerComponent = React.FC<RippleContainerProps>;

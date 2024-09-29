@@ -26,13 +26,13 @@ export const OnlyText: Story = {
       <Grid columns={9}>
         <span></span>
         {Object.values(Palette).map(color => (
-          <Grid.Item size={1}>
+          <Grid.Item key={color} size={1}>
             {color}
           </Grid.Item>
         ))}
         <span>Primary</span>
         {Object.values(Palette).map(color => (
-          <Grid.Item size={1}>
+          <Grid.Item key={color} size={1}>
             <Button
               color={color}
               type={ButtonType.primary}
@@ -41,7 +41,7 @@ export const OnlyText: Story = {
         ))}
        <span>Secondary</span>
         {Object.values(Palette).map(color => (
-          <Grid.Item size={1}>
+          <Grid.Item key={color} size={1}>
             <Button
               color={color}
               type={ButtonType.secondary}
@@ -50,7 +50,7 @@ export const OnlyText: Story = {
         ))}
          <span>Default</span>
         {Object.values(Palette).map(color => (
-          <Grid.Item size={1}>
+          <Grid.Item key={color} size={1}>
             <Button
               color={color}
               type={ButtonType.default}
@@ -69,13 +69,13 @@ export const OnlyIcon: Story = {
       <Grid columns={9}>
         <span></span>
         {Object.values(Palette).map(color => (
-          <Grid.Item size={1}>
+          <Grid.Item key={color} size={1}>
             {color}
           </Grid.Item>
         ))}
         <span>Primary</span>
         {Object.values(Palette).map(color => (
-          <Grid.Item size={1}>
+          <Grid.Item key={color} size={1}>
             <Button
               color={color}
               type={ButtonType.primary}
@@ -85,7 +85,7 @@ export const OnlyIcon: Story = {
         ))}
        <span>Secondary</span>
         {Object.values(Palette).map(color => (
-          <Grid.Item size={1}>
+          <Grid.Item key={color} size={1}>
             <Button
               color={color}
               type={ButtonType.secondary}
@@ -95,7 +95,7 @@ export const OnlyIcon: Story = {
         ))}
          <span>Default</span>
         {Object.values(Palette).map(color => (
-          <Grid.Item size={1}>
+          <Grid.Item key={color} size={1}>
             <Button
               color={color}
               type={ButtonType.default}
@@ -115,13 +115,13 @@ export const IconAndText: Story = {
       <Grid columns={9}>
         <span></span>
         {Object.values(Palette).map(color => (
-          <Grid.Item size={1}>
+          <Grid.Item key={color} size={1}>
             {color}
           </Grid.Item>
         ))}
         <span>Primary</span>
         {Object.values(Palette).map(color => (
-          <Grid.Item size={1}>
+          <Grid.Item key={color} size={1}>
             <Button
               color={color}
               type={ButtonType.primary}
@@ -131,7 +131,7 @@ export const IconAndText: Story = {
         ))}
        <span>Secondary</span>
         {Object.values(Palette).map(color => (
-          <Grid.Item size={1}>
+          <Grid.Item key={color} size={1}>
             <Button
               color={color}
               type={ButtonType.secondary}
@@ -141,7 +141,7 @@ export const IconAndText: Story = {
         ))}
          <span>Default</span>
         {Object.values(Palette).map(color => (
-          <Grid.Item size={1}>
+          <Grid.Item key={color} size={1}>
             <Button
               color={color}
               type={ButtonType.default}
