@@ -33,11 +33,11 @@ export const RippleContainer: RippleContainerComponent = ({
     setRipples([]);
   });
 
-  const addRipple = ({ pageX, pageY, currentTarget }: React.MouseEvent<HTMLElement>) => {
+  const addRipple = ({ clientX, clientY, currentTarget }: React.MouseEvent<HTMLElement>) => {
     const { width, height, x, y } = currentTarget.getBoundingClientRect();
     const size = width > height ? width : height;
-    const newX = pageX - x - size / 2;
-    const newY = pageY - y - size / 2;
+    const newX = clientX - x - size / 2;
+    const newY = clientY - y - size / 2;
 
     setRipples([...ripples, { x: newX, y: newY, size }]);
   };
